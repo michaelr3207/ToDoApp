@@ -1,7 +1,7 @@
 
 
 function createElement(elementType,classname, id,  innerHtml){
-    const element = document.createElement('div');
+    const element = document.createElement(elementType);
     if(innerHtml !== '' || id !== ''){
         element.innerHTML = innerHtml;
         element.id = id;

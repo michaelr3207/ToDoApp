@@ -1,3 +1,8 @@
+
+* {
+    box-sizing: border-box;
+}
+
 body, html{
     background: linear-gradient(237deg, #1f0404, rgb(10, 10, 47));
     margin: 0;
@@ -5,14 +10,11 @@ body, html{
 }
 
 
-
-
 .content{
     width: 77%;
     /*border: 2px solid red;*/
-    box-sizing: border-box;
     margin: auto;
-    background-color: rgba(128, 128, 128, 0.45);
+    background-color: rgb(161, 174, 185);
     height: 100%;
     border: 2px solid rgba(0, 0, 0, 0.7);
     display: grid;
@@ -28,4 +30,47 @@ body, html{
     border-bottom: 2px solid black;
     grid-column: 2 / 2;
 
+}
+
+.userName{
+    margin-top: 15px;
+    font-size: 26px;
+    width: 80%;
+    font-weight: bolder;
+}
+
+.searchBar{
+    width: 90%;
+    height: 18%;
+    margin-left: 70px;
+    margin-top: 30px;
+    display: flex;
+}
+
+.searchBar input{
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    background-color: #dcdcdc;
+    height: 100%;
+    width: 55%;
+    margin-left: 30px;
+}
+
+
+
+.iconBar{
+    display: grid;
+    /*border: 2px solid turquoise;*/
+    height: 44%;
+    width: 33%;
+    margin-left: 120px;
+    grid-template-columns: 0.4fr 0.4fr 2fr;
+    margin-top: -10px;
+    gap: -20px;
+    /*grid-column-gap: -20px;*/
+}
+
+.iconBar img{
+    height: 120%;
+    width: 60%;
 }
