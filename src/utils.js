@@ -9,3 +9,6 @@ function createElement(elementType,classname, id,  innerHtml){
     element.classList.add(classname);
     return element;
 }
+
+
+export {createElement};

@@ -15,4 +15,17 @@ body, html{
     background-color: rgba(128, 128, 128, 0.45);
     height: 100%;
     border: 2px solid rgba(0, 0, 0, 0.7);
+    display: grid;
+    grid-template-columns: 0.85fr 3fr;
+    grid-template-rows: 260px 4fr;
+    gap: 0px;
+}
+
+
+.headerDiv{
+    /*height: 23%;*/
+    /*width: 100%;*/
+    border-bottom: 2px solid black;
+    grid-column: 2 / 2;
+
 }
