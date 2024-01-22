@@ -1,9 +1,6 @@
 import {createElement} from "./utils";
-import MagnifyImage from "./magnify.png";
-import BellImage from "./bell-outline.png"
-import MessengerImage from './facebook-messenger.png'
-import ProfilePicture from './fbFace.jpg';
 import {addFirstRowToHeaderElement, addSecondRowToHeaderElement} from "./header";
+import {createSideBarElement} from "./sidebar";
 
 function loadMainPage(){
     const contentElement = document.getElementById('contentBox');
@@ -11,6 +8,7 @@ function loadMainPage(){
     addFirstRowToHeaderElement(headerElement);
     addSecondRowToHeaderElement(headerElement);
     contentElement.appendChild(headerElement);  // adding the header to the DOM
+    contentElement.appendChild(createSideBarElement());
 }
 
 

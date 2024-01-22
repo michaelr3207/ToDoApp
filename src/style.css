@@ -28,14 +28,14 @@ body, html{
 }
 
 
-.headerDiv{
-    /*height: 23%;*/
-    /*width: 100%;*/
+.headerDiv {
     border-bottom: 2px solid black;
-    grid-column:  2;
-    background: gainsboro;
+    grid-column: 2;
+    /*background: gainsboro;*/
     -webkit-box-shadow: 2px 8px 15px 0px #000000;
     box-shadow: 2px 8px 15px 0px #000000;
+    background-repeat: no-repeat;
+    background-image: url("banner.jpg");
 }
 
 .userName{
@@ -54,12 +54,12 @@ body, html{
 }
 
 .searchBar input{
-    border: 1px solid whitesmoke;
     border-radius: 20px;
     background-color: #dcdcdc;
     height: 100%;
     width: 55%;
     margin-left: 30px;
+    border: 1px solid #2a2727;
 }
 
 .secondRow{
@@ -104,6 +104,7 @@ body, html{
     width: 15%;
     height: 80%;
     margin-left: 68px;
+    border: 1px solid #2a2727;
 }
 
 
@@ -128,4 +129,83 @@ button{
 
 .firstBtn{
     margin-left: 15%;
+}
+
+.sidebarDashImg{
+    /*border: 2px solid red;*/
+    width: 25%;
+    height: 4%;
+}
+
+.sidebarDashImg img{
+    width: 80%;
+    height: 100%;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.dashTitle{
+    /*border: 2px solid turquoise;*/
+    width: 70%;
+    font-size: 38px;
+    padding-top: 26px;
+    margin-top: 15px;
+    font-weight: bolder;
+    font-family: roboto;
+    color: whitesmoke;
+    padding-left: 13px;
+}
+
+
+.sidebarLogoAndTitle{
+    display: flex;
+}
+
+
+.sidebarGrid1{
+    /*border: 2px solid red;*/
+    margin-top: 50px;
+    height: 400px;
+    display: grid;
+}
+
+.sidebarBtn{
+    /*border: 2px solid green;*/
+    width: 42%;
+    height: 50%;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.sidebarBtn:hover{
+    text-decoration: underline;
+    text-decoration-color: whitesmoke;
+}
+
+.sidebarBtn img{
+    height: 84%;
+    width: 20%;
+    margin-top: 5px;
+}
+
+.sidebarBtnTitle{
+    color: whitesmoke;
+    margin-left: 25px;
+    font-size: 30px;
+}
+
+.sidebarGrid2{
+    /*border: 2px solid red;*/
+    margin-top: 85px;
+    height: 200px;
+    display: grid;
+}
+
+.sidebar{
+    grid-row: 1 / 3;
+    background: linear-gradient(243deg, #f87945, #d74a4a);
+    border: 1px solid black;
+    -webkit-box-shadow: 3px 0px 15px 2px #000000;
+    box-shadow: 3px 0px 15px 2px #000000;
 }

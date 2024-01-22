@@ -4,7 +4,6 @@ import BellImage from "./bell-outline.png";
 import MessengerImage from "./facebook-messenger.png";
 import ProfilePicture from "./fbFace.jpg";
 
-
 function addFirstRowToHeaderElement(headerElement){
     const searchBar = createElement('div', 'searchBar', '', '');
     const searchIconImage = new Image();
