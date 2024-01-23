@@ -1,6 +1,6 @@
 import {createElement} from "./utils";
 import {addFirstRowToHeaderElement, addSecondRowToHeaderElement} from "./header";
-import {createSideBarElement} from "./sidebar";
+import {appendToDoList, createSideBarElement, createToDoElement} from "./sidebar";
 
 function loadMainPage(){
     const contentElement = document.getElementById('contentBox');
@@ -9,6 +9,7 @@ function loadMainPage(){
     addSecondRowToHeaderElement(headerElement);
     contentElement.appendChild(headerElement);  // adding the header to the DOM
     contentElement.appendChild(createSideBarElement());
+    appendToDoList(createToDoElement('testst', '0'));
 }
 
 
