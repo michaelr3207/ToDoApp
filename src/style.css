@@ -212,7 +212,7 @@ body, html{
 }
 
 .toDoListContainer{
-    border: 2px solid green;
+    /*border: 2px solid green;*/
     width: 90%;
     height: 85%;
     margin: auto;
@@ -232,17 +232,19 @@ body, html{
 
 .toDoElement{
     display: flex;
-    border: 1px solid blue;
+    /*border-bottom: 1px solid #040450;*/
     grid-template-columns: 0.5fr 2fr 0.5fr;
     text-align: center;
     width: 100%;
     height: 5%;
     justify-content: space-between;
+    margin-top: 2%;
 }
 
 .toDoElement button{
     height: 100%;
     width: 10%;
+    border-radius: 20px;
 }
 
 .toDoTask{

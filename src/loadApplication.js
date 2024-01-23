@@ -10,6 +10,9 @@ function loadMainPage(){
     contentElement.appendChild(headerElement);  // adding the header to the DOM
     contentElement.appendChild(createSideBarElement());
     appendToDoList(createToDoElement('testst', '0'));
+    appendToDoList(createToDoElement('walk dog', '0'));
+    appendToDoList(createToDoElement('testst', '0'));
+
 }
 
 
