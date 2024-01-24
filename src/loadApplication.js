@@ -3,6 +3,7 @@ import {addFirstRowToHeaderElement, addSecondRowToHeaderElement} from "./header"
 import {appendToDoList, createSideBarElement, createToDoElement} from "./sidebar";
 import {createProjectDisplayElement} from "./projectDisplay";
 import {createProjectCard} from "./projectCard";
+import {main} from "./mainApp";
 
 function loadMainPage(){
     const contentElement = document.getElementById('contentBox');
@@ -32,7 +33,7 @@ function loadMainPage(){
         'Test project description, this means absolutely nothing',
         zero.toString());
 
-
+    main();
 
 
 }
