@@ -3,7 +3,7 @@ import {appendToDoList, createToDoElement} from "./sidebar";
 import {ToDoTask} from "../classes/ToDo";
 
 
-function createToDoForm(){
+function createToDoForm(toDoForm){
     const contentElement = document.getElementById('contentBox');
     const formElement = createElement('div', 'hide', 'toDoForm', '');
     const toDoNameInput = createElement('input', 'toDoFormElement', 'toDoName', '');
@@ -15,7 +15,7 @@ function createToDoForm(){
     const submitButton = createElement('button', 'submitButton', '', 'SUBMIT');
     submitButton.addEventListener("click", () => takeAndSubmitData());
     const closeButton = createElement('button', 'closeButton', '', 'CLOSE');
-    closeButton.addEventListener("click", () => hideToDoForm());
+    closeButton.addEventListener("click", () => toDoForm.hideToDoForm());
     formElement.appendChild(toDoNameInput);
     formElement.appendChild(toDoDescriptionInput);
     formElement.appendChild(toDoDueDateInput);

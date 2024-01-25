@@ -1,9 +1,11 @@
 import {Project} from "./Project";
+import {createToDoForm} from "../UI/toDoForm";
 
 
 class ToDoApp{
 
     constructor(appName) {
+        createToDoForm(this);
         this.appName = appName;
         this.allToDos = [];
         this.allProjects = [];
@@ -37,6 +39,16 @@ class ToDoApp{
     setAppName(name){
         this.appName = name;
     }
+     displayToDoForm(){
+        const toDoForm = document.getElementById('toDoForm');
+        toDoForm.className = 'toDoForm';
+    }
+
+     hideToDoForm(){
+        const toDoForm = document.getElementById('toDoForm');
+        toDoForm.className = 'hide';
+    }
+
 }
 
 export {ToDoApp};

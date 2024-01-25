@@ -26,7 +26,7 @@ function addFirstRowToHeaderElement(headerElement){
     headerElement.appendChild(searchBar);
 }
 
-function addSecondRowToHeaderElement(headerElement){
+function addSecondRowToHeaderElement(headerElement, toDoApp){
     const secondRowElement = createElement('div', 'secondRow', '', '');
     const personDetailsElement = createElement('div', 'personDetails', '', '',);
     const emptyProfilePicImage = new Image();
@@ -37,11 +37,11 @@ function addSecondRowToHeaderElement(headerElement){
     personDetailsElement.appendChild(emptyProfilePicImage);
     personDetailsElement.appendChild(detailsElement);
     secondRowElement.appendChild(personDetailsElement);
-    addNavButtonsToHeader(secondRowElement);
+    addNavButtonsToHeader(secondRowElement, toDoApp);
     headerElement.appendChild(secondRowElement);
 }
 
-function addNavButtonsToHeader(secondRowElement){
+function addNavButtonsToHeader(secondRowElement, toDoApp){
     const navButtonElement = createElement('div','navButtons', '', '');
     const newToDoButton = createElement('button', 'firstBtn', '', 'To Do');
     const newProjectButton = createElement('button', 'newProjectButton', '', 'Project');
@@ -50,11 +50,11 @@ function addNavButtonsToHeader(secondRowElement){
     navButtonElement.appendChild(newProjectButton);
     navButtonElement.appendChild(clearAllButton);
     secondRowElement.appendChild(navButtonElement);
-    addEventListenerToNavButtons(newToDoButton);
+    addEventListenerToNavButtons(newToDoButton, toDoApp);
 }
 
-function addEventListenerToNavButtons(newToDoButton){
-    newToDoButton.addEventListener("click", () => {displayToDoForm()})
+function addEventListenerToNavButtons(newToDoButton, toDoApp){
+    newToDoButton.addEventListener("click", () => {toDoApp.displayToDoForm()})
 }
 
 export {addFirstRowToHeaderElement, addSecondRowToHeaderElement, addNavButtonsToHeader};

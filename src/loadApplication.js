@@ -5,10 +5,12 @@ import {createProjectDisplayElement} from "./UI/projectDisplay";
 import {createProjectCard} from "./UI/projectCard";
 import {main} from "./mainApp";
 import {createToDoForm} from "./UI/toDoForm";
+import {ToDoApp} from "./classes/ToDoApp";
 
 function loadMainPage(){
+    const toDoApp = new ToDoApp('Basic To Do App');
     const contentElement = document.getElementById('contentBox');
-    createHeaderAndSidebarElements(contentElement);    // appending these elements to DOM
+    createHeaderAndSidebarElements(contentElement, toDoApp);    // appending these elements to DOM
     appendToDoList(createToDoElement('testst', '0'));
     appendToDoList(createToDoElement('walk dog', '0'));
     appendToDoList(createToDoElement('testst', '0'));
@@ -35,14 +37,14 @@ function loadMainPage(){
         zero.toString());
 
     main();
-    createToDoForm();
+    // createToDoForm();
 }
 
 
-function createHeaderAndSidebarElements(contentElement){
+function createHeaderAndSidebarElements(contentElement, toDoApp){
     const headerElement = createElement('div', 'headerDiv', 'header', '');
     addFirstRowToHeaderElement(headerElement);
-    addSecondRowToHeaderElement(headerElement);
+    addSecondRowToHeaderElement(headerElement, toDoApp);
     contentElement.appendChild(headerElement);  // adding the header to the DOM
     contentElement.appendChild(createSideBarElement());
 }
