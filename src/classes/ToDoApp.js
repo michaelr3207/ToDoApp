@@ -1,12 +1,13 @@
+import {Project} from "./Project";
 
 
 class ToDoApp{
-
 
     constructor(appName) {
         this.appName = appName;
         this.allToDos = [];
         this.allProjects = [];
+        this.defaultProject = new Project('Default', 'Default Project');
     }
 
     addProject(project){
@@ -27,6 +28,14 @@ class ToDoApp{
 
     getToDoAtIndex(index){
         return this.allToDos[index];
+    }
+
+    getAppName(){
+        return this.appName;
+    }
+
+    setAppName(name){
+        this.appName = name;
     }
 }
 

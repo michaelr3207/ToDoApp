@@ -1,8 +1,8 @@
-import {createElement} from "./utils";
-import MagnifyImage from "./magnify.png";
-import BellImage from "./bell-outline.png";
-import MessengerImage from "./facebook-messenger.png";
-import ProfilePicture from "./fbFace.jpg";
+import {createElement, displayToDoForm} from "../utils";
+import MagnifyImage from "../images/magnify.png";
+import BellImage from "../images/bell-outline.png";
+import MessengerImage from "../images/facebook-messenger.png";
+import ProfilePicture from "../images/fbFace.jpg";
 
 function addFirstRowToHeaderElement(headerElement){
     const searchBar = createElement('div', 'searchBar', '', '');
@@ -50,6 +50,11 @@ function addNavButtonsToHeader(secondRowElement){
     navButtonElement.appendChild(newProjectButton);
     navButtonElement.appendChild(clearAllButton);
     secondRowElement.appendChild(navButtonElement);
+    addEventListenerToNavButtons(newToDoButton);
+}
+
+function addEventListenerToNavButtons(newToDoButton){
+    newToDoButton.addEventListener("click", () => {displayToDoForm()})
 }
 
 export {addFirstRowToHeaderElement, addSecondRowToHeaderElement, addNavButtonsToHeader};

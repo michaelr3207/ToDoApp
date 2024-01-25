@@ -1,9 +1,10 @@
 import {createElement} from "./utils";
-import {addFirstRowToHeaderElement, addSecondRowToHeaderElement} from "./header";
-import {appendToDoList, createSideBarElement, createToDoElement} from "./sidebar";
-import {createProjectDisplayElement} from "./projectDisplay";
-import {createProjectCard} from "./projectCard";
+import {addFirstRowToHeaderElement, addSecondRowToHeaderElement} from "./UI/header";
+import {appendToDoList, createSideBarElement, createToDoElement} from "./UI/sidebar";
+import {createProjectDisplayElement} from "./UI/projectDisplay";
+import {createProjectCard} from "./UI/projectCard";
 import {main} from "./mainApp";
+import {createToDoForm} from "./UI/toDoForm";
 
 function loadMainPage(){
     const contentElement = document.getElementById('contentBox');
@@ -34,8 +35,7 @@ function loadMainPage(){
         zero.toString());
 
     main();
-
-
+    createToDoForm();
 }
 
 

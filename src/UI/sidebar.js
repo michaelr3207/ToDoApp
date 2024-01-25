@@ -1,5 +1,5 @@
-import {createElement} from "./utils";
-import AppLogo from './check-outline.png';
+import {createElement} from "../utils";
+import AppLogo from '../images/check-outline.png';
 
 function createSideBarElement(){
     const sideBarElement = createElement('div', 'sidebar', '', '');

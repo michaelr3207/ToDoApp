@@ -1,4 +1,4 @@
-import {createElement} from "./utils";
+import {createElement} from "../utils";
 
 
 function createProjectCard(projectGrid,projectName, description, projectId){

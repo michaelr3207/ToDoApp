@@ -11,4 +11,15 @@ function createElement(elementType,classname, id,  innerHtml){
 }
 
 
-export {createElement};
+function displayToDoForm(){
+    const toDoForm = document.getElementById('toDoForm');
+    toDoForm.className = 'toDoForm';
+}
+
+function hideToDoForm(){
+    const toDoForm = document.getElementById('toDoForm');
+    toDoForm.className = 'hide';
+}
+
+
+export {createElement, displayToDoForm, hideToDoForm};
