@@ -5,7 +5,6 @@ import {ToDoTask} from "./classes/ToDo";
 
 function main(){
 
-    let toDoTask = new ToDoTask('','','');
     // const toDoExample = createToDo('sample task', 'descriptioj', 1);
     // toDoExample.description = 'cheese';
     // toDoExample.taskName = 'bruh';

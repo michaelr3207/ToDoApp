@@ -3,7 +3,7 @@ import {appendToDoList, createToDoElement} from "./sidebar";
 import {ToDoTask} from "../classes/ToDo";
 
 
-function createToDoForm(toDoForm){
+function createToDoForm(toDoApp){
     const contentElement = document.getElementById('contentBox');
     const formElement = createElement('div', 'hide', 'toDoForm', '');
     const toDoNameInput = createElement('input', 'toDoFormElement', 'toDoName', '');
@@ -13,9 +13,9 @@ function createToDoForm(toDoForm){
     const toDoDueDateInput = createElement('input', 'toDoFormElement', 'toDoDate', '');
     toDoDueDateInput.placeholder = 'Name of to do';  toDoDueDateInput.type = 'text';
     const submitButton = createElement('button', 'submitButton', '', 'SUBMIT');
-    submitButton.addEventListener("click", () => takeAndSubmitData());
+    submitButton.addEventListener("click", () => takeAndSubmitData(toDoApp));
     const closeButton = createElement('button', 'closeButton', '', 'CLOSE');
-    closeButton.addEventListener("click", () => toDoForm.hideToDoForm());
+    closeButton.addEventListener("click", () => toDoApp.hideToDoForm());
     formElement.appendChild(toDoNameInput);
     formElement.appendChild(toDoDescriptionInput);
     formElement.appendChild(toDoDueDateInput);
@@ -25,20 +25,19 @@ function createToDoForm(toDoForm){
 }
 
 
-function takeAndSubmitData(){
+function takeAndSubmitData(toDoApp){
     const toDoName = document.getElementById('toDoName').value;
     const toDoDescription = document.getElementById('toDoDescription').value;
     const toDoDate = document.getElementById('toDoDate').value;
-    console.log(toDoName);      console.log(toDoDescription);
-    console.log(toDoDate);
-
-    createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate);
+    createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp);
 }
 
-function createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate){
+function createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp){
     let toDoTask = new ToDoTask(toDoName, toDoDescription, toDoDate);
     appendToDoList(createToDoElement(toDoDescription, toDoTask.getId()));
+    toDoApp.defaultProject.addToDoTask(toDoTask);
     console.log(`to do id -----------> ${toDoTask.getId()}`);
+    console.log(`to do all tasks -----------> ${toDoApp.defaultProject.getAllToDos()}`);
 }
 
 

@@ -9,12 +9,6 @@ import {ToDoApp} from "./classes/ToDoApp";
 
 function loadMainPage(){
     const toDoApp = new ToDoApp('Basic To Do App');
-    const contentElement = document.getElementById('contentBox');
-    createHeaderAndSidebarElements(contentElement, toDoApp);    // appending these elements to DOM
-    appendToDoList(createToDoElement('testst', '0'));
-    appendToDoList(createToDoElement('walk dog', '0'));
-    appendToDoList(createToDoElement('testst', '0'));
-    createProjectDisplayElement();
     const projectGridElement = document.getElementById('projectGridDiv');
     const zero = 0;
     createProjectCard(projectGridElement, 'Example',
@@ -50,7 +44,7 @@ function createHeaderAndSidebarElements(contentElement, toDoApp){
 }
 
 
-export {loadMainPage};
+export {loadMainPage, createHeaderAndSidebarElements};
 
 
 

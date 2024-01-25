@@ -8,8 +8,8 @@ class Project{
         this.name = projectName;
         this.description = description;
         this.id = Project.number++;
-        this.noOfProjects = 0;
         this.noOfToDos = 0;
+        this.toDos = [];
     }
 
     getId(){
@@ -22,6 +22,18 @@ class Project{
 
     setCurrentSelectedToDo(toDo){
         this.currentSelectedToDo = toDo;
+    }
+
+    addToDoTask(task){
+        if(task != null){
+            this.noOfToDos ++;
+            this.toDos.push(task);
+        }
+    }
+
+    getAllToDos(){
+        console.log(this.toDos[0]);
+        return this.toDos;
     }
 
 
