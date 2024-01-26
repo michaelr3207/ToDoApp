@@ -2,6 +2,7 @@ import {Project} from "./Project";
 import {createToDoForm} from "../UI/toDoForm";
 import {createProjectDisplayElement} from "../UI/projectDisplay";
 import {createHeaderAndSidebarElements} from "../loadApplication";
+import {createProjectForm} from "../UI/projectForm";
 
 
 class ToDoApp{
@@ -11,6 +12,7 @@ class ToDoApp{
         createHeaderAndSidebarElements(contentElement, this);    // appending these elements to DOM
         createProjectDisplayElement();
         createToDoForm(this);
+        createProjectForm(this);
         this.appName = appName;
         this.allProjects = [];
         this.defaultProject = new Project('Default', 'Default Project');
@@ -51,6 +53,16 @@ class ToDoApp{
      hideToDoForm(){
         const toDoForm = document.getElementById('toDoForm');
         toDoForm.className = 'hide';
+    }
+
+    displayProjectForm(){
+        const projectForm = document.getElementById('projectForm');
+        projectForm.className = 'projectForm';
+    }
+
+    hideProjectForm(){
+        const projectForm = document.getElementById('projectForm');
+        projectForm.className = 'hide';
     }
 
 }

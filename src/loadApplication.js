@@ -10,22 +10,7 @@ import {ToDoApp} from "./classes/ToDoApp";
 function loadMainPage(){
     const toDoApp = new ToDoApp('Basic To Do App');
     const projectGridElement = document.getElementById('projectGridDiv');
-    const zero = 0;
-    createProjectCard(projectGridElement, 'Example',
-        'Test project description, this means absolutely nothing',
-        zero.toString());
-    createProjectCard(projectGridElement, 'Example',
-        'Test project description, this means absolutely nothing',
-        zero.toString());
-    createProjectCard(projectGridElement, 'Example',
-        'Test project description, this means absolutely nothing',
-        zero.toString());
-    createProjectCard(projectGridElement, 'Example',
-        'Test project description, this means absolutely nothing',
-        zero.toString());
-
-
-    main();
+    // main();
     // createToDoForm();
 }
 

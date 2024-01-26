@@ -31,6 +31,13 @@ class Project{
         }
     }
 
+    addToTask(task){
+        if(task != null){
+            this.noOfToDos ++;
+            this.toDos.push(task);
+        }
+    }
+
     getAllToDos(){
         console.log(this.toDos[0]);
         return this.toDos;

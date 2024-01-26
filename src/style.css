@@ -123,6 +123,7 @@ body, html{
     background-color: rgba(122, 15, 15, 0.91);
     font-size: 20px;
     font-weight: bolder;
+    border: 1px solid black;
     -webkit-box-shadow: 2px 8px 15px 0px #000000;
     box-shadow: 2px 8px 15px 0px #000000;
 }
@@ -341,7 +342,7 @@ body, html{
     margin-top: 10%;
 }
 
-.toDoForm{
+.toDoForm, .projectForm{
     border: 2px solid red;
     height: 25%;
     width: 25%;
@@ -352,6 +353,8 @@ body, html{
     right: 25%;
     top: 10%;
 }
+
+
 
 .hide{
     display: none;
