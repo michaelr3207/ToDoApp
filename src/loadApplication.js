@@ -23,12 +23,7 @@ function loadMainPage(){
     createProjectCard(projectGridElement, 'Example',
         'Test project description, this means absolutely nothing',
         zero.toString());
-    createProjectCard(projectGridElement, 'Example',
-        'Test project description, this means absolutely nothing',
-        zero.toString());
-    createProjectCard(projectGridElement, 'Example',
-        'Test project description, this means absolutely nothing',
-        zero.toString());
+
 
     main();
     // createToDoForm();

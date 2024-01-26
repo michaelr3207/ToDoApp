@@ -36,7 +36,7 @@ function createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp
     let toDoTask = new ToDoTask(toDoName, toDoDescription, toDoDate);
     appendToDoList(createToDoElement(toDoDescription, toDoTask.getId()));
     toDoApp.defaultProject.addToDoTask(toDoTask);
-    console.log(`to do id -----------> ${toDoTask.getId()}`);
+    console.log(`to do id -----------> ${toDoTask.name}`);
     console.log(`to do all tasks -----------> ${toDoApp.defaultProject.getAllToDos()}`);
 }
 
