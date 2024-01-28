@@ -310,7 +310,7 @@ body, html{
 
 .projectCard{
     border: 2px solid black;
-    border-radius: 20px;
+    border-radius: 10px;
     width: 60%;
     height: 200px;
     display: flex;
@@ -326,6 +326,20 @@ body, html{
     margin-bottom: 12%;
     text-decoration: underline;
     text-decoration-style: double;
+    border: 2px solid black;
+}
+
+.projectButtonDiv{
+    display: flex;
+    align-self: flex-end;
+    margin-top: 8%;
+}
+
+.projectButtonDiv button{
+    background: #830404;
+    color: white;
+    font-family: monospace;
+    border-radius: 10px;
 }
 
 .projectCardDescription{

@@ -9,7 +9,7 @@ import {ToDoApp} from "./classes/ToDoApp";
 
 function loadMainPage(){
     const toDoApp = new ToDoApp('Basic To Do App');
-    const projectGridElement = document.getElementById('projectGridDiv');
+    // const projectGridElement = document.getElementById('projectGridDiv');
     // main();
     // createToDoForm();
 }
