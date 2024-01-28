@@ -51,7 +51,6 @@ function appendToDoList(task){
 
 function addEventListenerToDoTaskButtons(deleteBtn, addBtn){
     deleteBtn.addEventListener("click", (e) => {
-        console.log(`bruh`);
         const toDoListContainer = document.getElementById('listContainer');
         const toDoElement = document.getElementById(e.target.id + 'toDo');
         toDoListContainer.removeChild(toDoElement);

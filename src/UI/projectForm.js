@@ -34,9 +34,9 @@ function createProjectObjectAndAddToUi(projectName, projectDescription,  toDoApp
     let newProject = new Project(projectName, projectDescription);
     const projectGrid = document.getElementById('projectGridDiv');
     toDoApp.addProject(newProject);
-    createProjectCard(projectGrid,projectName, projectDescription, newProject.id);
+    createProjectCard(projectGrid, projectName, projectDescription, newProject.projectId, toDoApp);
     console.log(`to do all projects -----------> ${toDoApp.getAllProjects()}`);
-    console.log(`new project ID -----------> ${newProject.id}`);
+    console.log(`new project ID -----------> ${newProject.projectId}`);
 }
 
 export {createProjectForm};

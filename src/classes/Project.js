@@ -7,7 +7,7 @@ class Project{
         this.currentSelectedToDo = '';
         this.name = projectName;
         this.description = description;
-        this.id = Project.number++;
+        this.projectId = Project.number++;
         this.noOfToDos = 0;
         this.toDos = [];
     }

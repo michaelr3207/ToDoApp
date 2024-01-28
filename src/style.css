@@ -331,15 +331,31 @@ body, html{
 
 .projectButtonDiv{
     display: flex;
-    align-self: flex-end;
-    margin-top: 8%;
+    margin-top: 15%;
+    justify-content: space-between;
 }
 
 .projectButtonDiv button{
-    background: #830404;
+    /*background: #830404;*/
+    /*color: white;*/
+    /*font-family: monospace;*/
+    /*border-radius: 10px;*/
+}
+
+.closeButtonCard{
+    background: #6c0000;
     color: white;
     font-family: monospace;
-    border-radius: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.addButton{
+    background: #2f6700;
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+    border-radius: 5px;
 }
 
 .projectCardDescription{
