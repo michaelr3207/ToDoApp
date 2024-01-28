@@ -25,9 +25,7 @@ class ToDoApp{
     removeProjectById(id){
         console.log('All cards before:  -----> ' + this.allProjects);
         for(let index = 0; index < this.allProjects.length; index ++){
-            console.log('looooooop');
             if(this.allProjects[index].projectId.toString() === id.toString()){
-                console.log('match found');
                this.allProjects.splice(index, 1);
             }
         }

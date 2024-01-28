@@ -13,7 +13,7 @@ class Project{
     }
 
     getId(){
-        return this.id;
+        return this.projectId;
     }
 
     getCurrentSelectedToDo(){
@@ -22,6 +22,17 @@ class Project{
 
     setCurrentSelectedToDo(toDo){
         this.currentSelectedToDo = toDo;
+    }
+
+    removeToDoById(id){
+        console.log('All toDos before:  -----> ' + this.toDos);
+        for(let index = 0; index < this.toDos.length; index ++){
+            if(this.toDos[index].id.toString() === id.toString()){
+                console.log('match');
+                this.toDos.splice(index, 1);
+            }
+        }
+        console.log('All toDos after:  -----> ' + this.toDos);
     }
 
     addToDoTask(task){

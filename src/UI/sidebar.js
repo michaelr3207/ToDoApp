@@ -31,12 +31,12 @@ function createToDoContainer(sidebarElement){
     sidebarElement.appendChild(toDoListContainer);
 }
 
-function createToDoElement(description, id){
+function createToDoElement(description, id, toDoApp){
     const toDoElement = createElement('div', 'toDoElement', id + 'toDo', '');
     const deleteBtn = createElement('button', 'deleteBtn', id, 'X');
     const toDoTaskElement = createElement('div', 'toDoTask', '', description);
     const addBtn = createElement('button', 'addBtn', 'addButton', '+');
-    addEventListenerToDoTaskButtons(deleteBtn, addBtn);
+    addEventListenerToDoTaskButtons(deleteBtn, addBtn, toDoApp);
     toDoElement.appendChild(deleteBtn);
     toDoElement.appendChild(toDoTaskElement);
     toDoElement.appendChild(addBtn);
@@ -49,11 +49,12 @@ function appendToDoList(task){
     toDoList.appendChild(task);
 }
 
-function addEventListenerToDoTaskButtons(deleteBtn, addBtn){
+function addEventListenerToDoTaskButtons(deleteBtn, addBtn, toDoApp){
     deleteBtn.addEventListener("click", (e) => {
         const toDoListContainer = document.getElementById('listContainer');
         const toDoElement = document.getElementById(e.target.id + 'toDo');
         toDoListContainer.removeChild(toDoElement);
+        toDoApp.defaultProject.removeToDoById(e.target.id);
     })
 }
 
