@@ -15,7 +15,7 @@ function main(){
     //
     // console.log('hi')
     //
-    const project1 = new Project('1', 'ffff');
+    // const project1 = new Project('1', 'ffff');
     // const project2 = new Project('1', 'fffffggggg');
     // const project3 = new Project('1', 'fffffggggg');
     //

@@ -7,7 +7,7 @@ function createProjectCard(projectGrid,projectName, description, projectId, toDo
     const closeButton = createElement('button', 'closeButtonCard', projectId, 'X');
     const addButton = createElement('button', 'addButton', '', "+");
     const projectCardTitle = createElement('div', 'projectCardTitle', '', projectName);
-    const projectCardDescription = createElement('button', 'toDoButton', '', 'Description');
+    const projectCardDescription = createElement('button', 'toDoButton', projectId, 'Description');
     const showToDoButton = createElement('button', 'toDoButton', '', 'To Dos');
     console.log(`project card elem,ent id  -----> ${projectCardElement.id}`);
     projectCardButtonDiv.appendChild(addButton);
@@ -16,19 +16,40 @@ function createProjectCard(projectGrid,projectName, description, projectId, toDo
     projectCardElement.appendChild(projectCardDescription);
     projectCardElement.appendChild(showToDoButton);
     projectCardElement.appendChild(projectCardButtonDiv);
+    addDescriptionBoxToProjectCard(projectCardElement, description, projectId);
     projectGrid.appendChild(projectCardElement);
-    addEventListenerToProjectCardButtons(closeButton,toDoApp);
+    addEventListenerToProjectCardButtons(closeButton, projectCardDescription, toDoApp);
 }
 
 
-function addEventListenerToProjectCardButtons(closeButton, toDoApp){
+function addEventListenerToProjectCardButtons(closeButton, descriptionButton, toDoApp){
     closeButton.addEventListener("click", (event) => {
         const projectGridDiv = document.getElementById('projectGridDiv');
         const cardToBeRemoved = document.getElementById(event.target.id + 'project');
         projectGridDiv.removeChild(cardToBeRemoved);
         console.log(event.target.id + '<-------------------');
         toDoApp.removeProjectById(event.target.id);
+    });
+    descriptionButton.addEventListener("click", (e) => {
+        displayProjectCardDescription(e.target.id);
+    });
+
+}
+
+function addDescriptionBoxToProjectCard(projectCardElement, description, projectId){
+    const projectDescriptionElement = createElement('div', 'projectDescriptionDiv', projectId + 'projectDescription', description);
+    const projectDescriptionCloseButton = createElement('div', 'descriptionCloseBtn', '', 'X');
+    projectDescriptionCloseButton.addEventListener("click", () => {
+        console.log('testetstetsts');
+        projectDescriptionElement.className = 'hide';
     })
+    projectDescriptionElement.appendChild(projectDescriptionCloseButton);
+    projectCardElement.appendChild(projectDescriptionElement);
+}
+
+function displayProjectCardDescription(id){
+    const cardToBeDisplayed = document.getElementById(id + 'projectDescription');
+    cardToBeDisplayed.className = 'projectDescriptionDiv';
 }
 
 

@@ -16,10 +16,12 @@ class ToDoApp{
         this.appName = appName;
         this.allProjects = [];
         this.defaultProject = new Project('Default', 'Default Project');
+        this.noProjects = 0;
     }
 
     addProject(project){
         this.allProjects.push(project);
+        this.noProjects ++;
     }
 
     removeProjectById(id){
@@ -27,6 +29,7 @@ class ToDoApp{
         for(let index = 0; index < this.allProjects.length; index ++){
             if(this.allProjects[index].projectId.toString() === id.toString()){
                this.allProjects.splice(index, 1);
+               this.decreaseNoProjects();
             }
         }
         console.log('All cards after:  -----> ' + this.getAllProjects());
@@ -38,6 +41,11 @@ class ToDoApp{
 
     getAllProjects(){
         return this.allProjects;
+    }
+
+    decreaseNoProjects(){
+        if(this.noProjects >= 0)
+            this.noProjects --;
     }
 
     getAllToDos(){

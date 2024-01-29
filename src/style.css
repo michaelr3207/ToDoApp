@@ -385,6 +385,19 @@ body, html{
 }
 
 
+.projectDescriptionDiv{
+    border: 1px solid #938d8d;
+    border-radius: 2%;
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    font-size: 20px;
+    background: rgba(196, 191, 191, 0.99);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 
 .hide{
     display: none;
