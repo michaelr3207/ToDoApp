@@ -2,7 +2,6 @@ import {createElement, displayToDoForm, hideToDoForm} from "../utils";
 import {appendToDoList, createToDoElement} from "./sidebar";
 import {ToDoTask} from "../classes/ToDo";
 
-
 function createToDoForm(toDoApp){
     const contentElement = document.getElementById('contentBox');
     const formElement = createElement('div', 'hide', 'toDoForm', '');
@@ -32,6 +31,7 @@ function takeAndSubmitDataFromToDoForm(toDoApp){
     createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp);
 }
 
+
 function createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp){
     let toDoTask = new ToDoTask(toDoName, toDoDescription, toDoDate);
     appendToDoList(createToDoElement(toDoDescription, toDoTask.getId(), toDoApp));
@@ -40,8 +40,6 @@ function createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp
     console.log(`to do all tasks -----------> ${toDoApp.defaultProject.getAllToDos()}`);
 
 }
-
-
 
 
 export {createToDoForm};

@@ -16,6 +16,13 @@ class Project{
         return this.projectId;
     }
 
+    getToDoById(id){
+        for(let item of this.toDos){
+            if(item.id.toString() === id.toString())
+                return item;
+        }
+    }
+
     getCurrentSelectedToDo(){
         return this.currentSelectedToDo;
     }

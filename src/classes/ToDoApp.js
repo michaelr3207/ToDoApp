@@ -13,6 +13,7 @@ class ToDoApp{
         createProjectDisplayElement();
         createToDoForm(this);
         createProjectForm(this);
+        this.idOfCurrentSelectedToDo =  '';
         this.appName = appName;
         this.allProjects = [];
         this.defaultProject = new Project('Default', 'Default Project');
@@ -81,6 +82,14 @@ class ToDoApp{
     hideProjectForm(){
         const projectForm = document.getElementById('projectForm');
         projectForm.className = 'hide';
+    }
+
+    addToDoToProject(toDoId, projectId){
+        const toDo = this.defaultProject.getToDoById(toDoId);
+        for(let item of this.allProjects){
+            if(item.projectId.toString() === projectId.toString())
+                item.addToDoTask(toDo);
+        }
     }
 
 }
