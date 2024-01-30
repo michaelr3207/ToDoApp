@@ -50,12 +50,13 @@ function addNavButtonsToHeader(secondRowElement, toDoApp){
     navButtonElement.appendChild(newProjectButton);
     navButtonElement.appendChild(clearAllButton);
     secondRowElement.appendChild(navButtonElement);
-    addEventListenerToNavButtons(newToDoButton, newProjectButton, toDoApp);
+    addEventListenerToNavButtons(newToDoButton, newProjectButton, clearAllButton, toDoApp);
 }
 
-function addEventListenerToNavButtons(newToDoButton, newProjectButton, toDoApp){
+function addEventListenerToNavButtons(newToDoButton, newProjectButton, clearAllButton, toDoApp){
     newToDoButton.addEventListener("click", () => toDoApp.displayToDoForm());
     newProjectButton.addEventListener("click", () => toDoApp.displayProjectForm());
+    clearAllButton.addEventListener("click", () => console.log('this is the clear all butoon ----->'));
 }
 
 export {addFirstRowToHeaderElement, addSecondRowToHeaderElement, addNavButtonsToHeader};

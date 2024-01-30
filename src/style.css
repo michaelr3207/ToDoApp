@@ -28,13 +28,14 @@ body, html{
 
 .toDoListProjectDiv{
     position: absolute;
-    width: 11%;
-    height: 20%;
+    width: 21%;
+    height: 40%;
     margin-right: 20px;
     /*background: #ccedff;*/
     border: 1px solid rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
+    left: 50%;
     justify-content: flex-start;
     -webkit-box-shadow: 5px 5px 13px 4px rgba(0,0,0,0.53);
     box-shadow: 5px 5px 13px 4px rgba(0,0,0,0.53);
@@ -55,9 +56,31 @@ body, html{
     font-weight: lighter;
 }
 
+.expandBtnToDo{
+}
+
+.btnDivToDoListProject{
+    justify-self: right;
+    align-self: flex-end;
+}
+
+.expandBtnToDo{
+    justify-self: flex-end;
+}
+
+.projectOrderedListDiv li{
+    display: flex;
+    flex-direction: row;
+    /*border: 1px solid red;*/
+    /*justify-content: space-between;*/
+}
+
 .toDoListProjectContainer{
     /*border: 3px solid orange;*/
     display: block;
+    font-family: Verdana;
+    font-style: italic;
+
     height: 100%;
 }
 
@@ -104,7 +127,10 @@ body, html{
     grid-template-columns: 1fr 1fr;
 }
 
-
+.toDoListProjectElement{
+    display: flex;
+    justify-content: space-between;
+}
 
 .iconBar{
     display: grid;

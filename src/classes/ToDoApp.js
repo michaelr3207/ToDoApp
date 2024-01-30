@@ -18,11 +18,20 @@ class ToDoApp{
         this.allProjects = [];
         this.defaultProject = new Project('Default', 'Default Project');
         this.noProjects = 0;
+        this.currentlyDisplayingProjectToDos = false;
     }
 
     addProject(project){
         this.allProjects.push(project);
         this.noProjects ++;
+    }
+
+    getCurrentlyDisplayingProjectToDos(){
+        return this.currentlyDisplayingProjectToDos;
+    }
+
+    setCurrentlyDisplayingProjectToDos(option){
+       this.currentlyDisplayingProjectToDos = option;
     }
 
     // getProjectById(id) {

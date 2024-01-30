@@ -70,18 +70,18 @@ function displayProjectCardDescription(id){
 
 
 function createProjectCardToDoListDisplay(projectCardElement, projectId, toDoApp, showToDoButton){
-    const toDoListElement = createElement('div', 'toDoListProjectDiv', projectId + 'projectToDoList', '');
+    const toDoListElement = createElement('div', 'hide', projectId + 'projectToDoList', '');
     const toDoListTitleElement = createElement('div', 'toDoListProjectTitleDiv', '', 'Current To Dos');
     const toDoListContainer = createElement('div', 'toDoListProjectContainer', '', '');
-    const orderedListElement = createElement('ol', 'projectOrderedListDiv', '', '');
+    const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + projectId, '');
     const closeButton = createElement('button', 'closeButtonProjectToDoList', '', 'X');
     showToDoButton.addEventListener("click", () => {
-        fillOrderedListWithToDoObjects(toDoListContainer, orderedListElement, toDoApp, projectId);
-        displayOrHideProjectToDoList('display', projectId);
+        fillOrderedListWithToDoObjects(toDoListContainer, listElement, toDoApp, projectId);
+        displayOrHideProjectToDoList('display', projectId, toDoApp);
     });
 
     closeButton.addEventListener("click", () => {
-       displayOrHideProjectToDoList('hide', projectId);
+       displayOrHideProjectToDoList('hide', projectId, toDoApp);
     });
     toDoListElement.appendChild(toDoListTitleElement);
     toDoListElement.appendChild(toDoListContainer);
@@ -89,23 +89,50 @@ function createProjectCardToDoListDisplay(projectCardElement, projectId, toDoApp
     projectCardElement.appendChild(toDoListElement);
 }
 
-function displayOrHideProjectToDoList(option, projectId){
+function displayOrHideProjectToDoList(option, projectId, toDoApp){
+    if(toDoApp.getCurrentlyDisplayingProjectToDos() === true && option !== 'hide'){
+        alert('ERROR: Please Close current to do list!');
+        return;
+    }
     const projectToDoListElement = document.getElementById(projectId + 'projectToDoList');
-    if(option === 'hide')
+    if(option === 'hide'){
+        toDoApp.setCurrentlyDisplayingProjectToDos(false);
         projectToDoListElement.className = option;
-    else
+    }
+    else{
+        toDoApp.setCurrentlyDisplayingProjectToDos(true);
         projectToDoListElement.className = 'toDoListProjectDiv';
+    }
 }
 
-function fillOrderedListWithToDoObjects(listContainer, orderedListElement, toDoApp, projectId){
-    orderedListElement.innerHTML = '';
+function fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, projectId){
+    listElement.innerHTML = '';
     const project = toDoApp.getProjectById(projectId);
     console.log(`tetstetstetststst -------->  ${project.projectId}`);
-    project.toDos.forEach(item => {
-        const listElement = createElement('li', 'toDoListProjectElement', '', item.name);
-        orderedListElement.appendChild(listElement);
+    project.toDos.forEach((item, index) => {
+        console.log('counter ++');
+        const closeBtnList = createElement('button', 'btnDivToDoListProject', item.id, 'X');
+        const expandBtn = createElement('button', 'btnDivToDoListProject', item.id, '+');
+        const buttonDiv = createElement('div', 'projectToDoBtnDiv', '', '');
+        const newListElement = createElement('div', 'toDoListProjectElement', item.id+'toDoListProject', '');
+        newListElement.innerHTML += (index + 1) + ' - ' + item.name;
+        closeBtnList.addEventListener("click", (event) => {
+            const listOfToDos = document.getElementById('orderedList' + projectId);
+            console.log('--------------- ddd-> ' + listOfToDos);
+            const toDoToBeRemoved = document.getElementById(item.id + 'toDoListProject');
+            listOfToDos.removeChild(toDoToBeRemoved);
+            toDoApp.getProjectById(projectId).removeToDoById(item.id);
+        });
+        buttonDiv.appendChild(closeBtnList);
+        buttonDiv.appendChild(expandBtn);
+        newListElement.appendChild(buttonDiv);
+        listElement.appendChild(newListElement);
     });
-    listContainer.appendChild(orderedListElement);
+    listContainer.appendChild(listElement);
+}
+
+function addEventListenerToDoListProject(closeBtn, expandBtn, projectId, itemId){
+
 }
 
 
