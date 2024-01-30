@@ -25,6 +25,27 @@ class ToDoApp{
         this.noProjects ++;
     }
 
+    // getProjectById(id) {
+    //     this.allProjects.forEach((project, index )  => {
+    //         if(project.projectId.toString() === id.toString()){
+    //             console.log('i fiundthe adandha');
+    //             let projectFound = this.allProjects[index];
+    //             return projectFound;
+    //         }
+    //     })
+    // }
+
+    getProjectById(id) {
+        console.log('project ud ------> dl ' + id);
+        for(let index = 0; index < this.allProjects.length; index ++){
+            if(this.allProjects[index].projectId.toString() === id.toString()){
+                console.log('match issnadnj');
+                console.log('---------------> hlele' + this.allProjects[index].title);
+                return this.allProjects[index];
+            }
+        }
+    }
+
     removeProjectById(id){
         console.log('All cards before:  -----> ' + this.allProjects);
         for(let index = 0; index < this.allProjects.length; index ++){

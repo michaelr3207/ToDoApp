@@ -49,7 +49,7 @@ function appendToDoList(task){
     toDoList.appendChild(task);
 }
 
-function addEventListenerToDoTaskButtons(deleteBtn, addBtn, id,  toDoApp){
+function addEventListenerToDoTaskButtons(deleteBtn, addBtn, id, toDoApp){
     deleteBtn.addEventListener("click", (e) => {
         const toDoListContainer = document.getElementById('listContainer');
         const toDoElement = document.getElementById(e.target.id + 'toDo');

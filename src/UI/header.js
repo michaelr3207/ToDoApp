@@ -12,7 +12,7 @@ function addFirstRowToHeaderElement(headerElement){
     const searchInput = createElement('input', 'inputBox', '', '');
     searchInput.name = 'searchBox';  // may not be used
     const iconBarElement = createElement('div', 'iconBar', '', '');
-    const userNameElement = createElement('div', 'userName', '', 'Michael R');
+    const userNameElement = createElement('div', 'userName', '', 'John Doe');
 
     searchIconImage.src = MagnifyImage;
     bellImage.src = BellImage;
@@ -31,7 +31,7 @@ function addSecondRowToHeaderElement(headerElement, toDoApp){
     const personDetailsElement = createElement('div', 'personDetails', '', '',);
     const emptyProfilePicImage = new Image();
     const detailsElement = createElement('div', 'details', '', ' <span class="hi">Hi There</span>');
-    const personName = createElement('div', 'personName', '', 'Michael Robinson');
+    const personName = createElement('div', 'personName', '', 'John Doe');
     emptyProfilePicImage.src = ProfilePicture;
     detailsElement.appendChild(personName);
     personDetailsElement.appendChild(emptyProfilePicImage);
