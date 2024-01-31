@@ -132,6 +132,29 @@ body, html{
     justify-content: space-between;
 }
 
+.toDoExpansionDiv{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgba(210, 229, 248, 0.98);
+    border: 4px solid peru;
+    height: 40%;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.toDoExpansionDescription{
+    height: 140%;
+    width: 100%;
+}
+
+#saveButtonToDoProject{
+}
+.toDoExpansionDiv input{
+    width: 100%;
+}
+
+
 .iconBar{
     display: grid;
     /*border: 2px solid turquoise;*/

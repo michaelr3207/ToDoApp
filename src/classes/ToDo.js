@@ -24,6 +24,11 @@ class ToDoTask{
         this.currentSelectedToDo = toDo;
     }
 
+    setDescription(description){
+        this.description = description;
+    }
+
+
 }
 
 export {ToDoTask};

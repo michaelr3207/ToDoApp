@@ -116,24 +116,51 @@ function fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, pro
         const buttonDiv = createElement('div', 'projectToDoBtnDiv', '', '');
         const newListElement = createElement('div', 'toDoListProjectElement', item.id+'toDoListProject', '');
         newListElement.innerHTML += (index + 1) + ' - ' + item.name;
-        closeBtnList.addEventListener("click", (event) => {
-            const listOfToDos = document.getElementById('orderedList' + projectId);
-            console.log('--------------- ddd-> ' + listOfToDos);
-            const toDoToBeRemoved = document.getElementById(item.id + 'toDoListProject');
-            listOfToDos.removeChild(toDoToBeRemoved);
-            toDoApp.getProjectById(projectId).removeToDoById(item.id);
-        });
+        addEventListenerToDoListProject(closeBtnList, expandBtn, projectId, item.id, toDoApp);
         buttonDiv.appendChild(closeBtnList);
         buttonDiv.appendChild(expandBtn);
         newListElement.appendChild(buttonDiv);
+        addEditWindowToToDoListProjectCard(project, newListElement, item.id);
         listElement.appendChild(newListElement);
     });
     listContainer.appendChild(listElement);
 }
 
-function addEventListenerToDoListProject(closeBtn, expandBtn, projectId, itemId){
-
+function addEventListenerToDoListProject(closeBtnList, expandBtn, projectId, itemId, toDoApp){
+    closeBtnList.addEventListener("click", (event) => {
+        const listOfToDos = document.getElementById('orderedList' + projectId);
+        console.log('--------------- ddd-> ' + listOfToDos);
+        const toDoToBeRemoved = document.getElementById(itemId + 'toDoListProject');
+        listOfToDos.removeChild(toDoToBeRemoved);
+        toDoApp.getProjectById(projectId).removeToDoById(itemId);
+    });
+    expandBtn.addEventListener("click", () => {
+       displayEditWindowToDo(itemId);
+    });
 }
 
+function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId){
+    const toDoExpansionWindow = createElement('div', 'hide', itemId + 'expansionDiv', '' );
+    const answerBox = createElement('div', 'answerBoxDiv', '', '');
+    const descriptionBox = createElement('textarea', 'toDoExpansionDescription', itemId + 'descriptionExpansion', '');
+    const dateBox = createElement('input', 'toDoDate', itemId + 'dateExpansion', '');
+    const saveButton = createElement('button', 'saveButtonToDoProject', 'saveButtonToDoProject', 'SAVE');
+    saveButton.addEventListener("click", () => {
+       const updatedDescription = descriptionBox.value;
+       currentProject.getToDoById(itemId).setDescription(updatedDescription);
+       toDoExpansionWindow.className = 'hide';
+    });
+    descriptionBox.value = currentProject.getToDoById(itemId).description;
+    answerBox.appendChild(descriptionBox);
+    answerBox.appendChild(dateBox);
+    toDoExpansionWindow.appendChild(answerBox);
+    toDoExpansionWindow.appendChild(saveButton);
+    listElement.appendChild(toDoExpansionWindow);
+}
+
+function displayEditWindowToDo(itemId){
+    const windowToBeDisplayed = document.getElementById(itemId + 'expansionDiv');
+    windowToBeDisplayed.className = 'toDoExpansionDiv';
+}
 
 export {createProjectCard};
