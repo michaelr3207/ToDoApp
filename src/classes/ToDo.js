@@ -28,6 +28,14 @@ class ToDoTask{
         this.description = description;
     }
 
+    setDate(date){
+        this.date = date;
+    }
+
+    setName(name){
+        this.name = name;
+    }
+
 
 }
 

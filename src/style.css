@@ -143,14 +143,28 @@ body, html{
     justify-content: space-between;
 }
 
-.toDoExpansionDescription{
+.toDoExpansionSidebar{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: #2f6700;
+    border: 2px solid red;
+    height: 15%;
+    /*width: 30%;*/
+    justify-content: space-between;
+}
+
+
+
+.toDoExpansionDescription, .toDoExpansionDescriptionSidebar{
     height: 140%;
     width: 100%;
 }
 
-#saveButtonToDoProject{
-}
-.toDoExpansionDiv input{
+
+
+
+.toDoExpansionDiv input, .toDoExpansionSidebar input{
     width: 100%;
 }
 
@@ -176,6 +190,11 @@ body, html{
     margin-top: 7px;
 }
 
+#saveButtonToDoProjectSidebar{
+    width: 100%;
+    height: 12%;
+    border: 4px solid red;
+}
 
 .details{
     font-weight: bolder;
@@ -304,7 +323,7 @@ body, html{
 
 .toDoDiv{
     font-family: monospace;
-    font-size: 20px;
+    font-size: 12px;
     color: white;
 }
 

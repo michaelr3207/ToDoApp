@@ -142,15 +142,24 @@ function addEventListenerToDoListProject(closeBtnList, expandBtn, projectId, ite
 function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId){
     const toDoExpansionWindow = createElement('div', 'hide', itemId + 'expansionDiv', '' );
     const answerBox = createElement('div', 'answerBoxDiv', '', '');
+    const nameBox = createElement('input', 'toDoDate', itemId + 'nameExpansionProject', '');
     const descriptionBox = createElement('textarea', 'toDoExpansionDescription', itemId + 'descriptionExpansion', '');
     const dateBox = createElement('input', 'toDoDate', itemId + 'dateExpansion', '');
     const saveButton = createElement('button', 'saveButtonToDoProject', 'saveButtonToDoProject', 'SAVE');
     saveButton.addEventListener("click", () => {
-       const updatedDescription = descriptionBox.value;
-       currentProject.getToDoById(itemId).setDescription(updatedDescription);
-       toDoExpansionWindow.className = 'hide';
+        const updatedDescription = descriptionBox.value;
+        const updatedDate = dateBox.value;
+        const updatedName = nameBox.value;
+        // listElement.innerHTML =
+        currentProject.getToDoById(itemId).setDescription(updatedDescription);
+        currentProject.getToDoById(itemId).setDate(updatedDate);
+        currentProject.getToDoById(itemId).setName(updatedName);
+        toDoExpansionWindow.className = 'hide';
     });
+    nameBox.value = currentProject.getToDoById(itemId).name;
+    dateBox.value = currentProject.getToDoById(itemId).dueDate;
     descriptionBox.value = currentProject.getToDoById(itemId).description;
+    answerBox.appendChild(nameBox);
     answerBox.appendChild(descriptionBox);
     answerBox.appendChild(dateBox);
     toDoExpansionWindow.appendChild(answerBox);

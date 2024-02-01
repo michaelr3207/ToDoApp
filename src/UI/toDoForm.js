@@ -1,5 +1,5 @@
 import {createElement, displayToDoForm, hideToDoForm} from "../utils";
-import {appendToDoList, createToDoElement} from "./sidebar";
+import {addEditWindowToToDo, appendToDoList, createToDoElement} from "./sidebar";
 import {ToDoTask} from "../classes/ToDo";
 
 function createToDoForm(toDoApp){
@@ -10,7 +10,7 @@ function createToDoForm(toDoApp){
     const toDoDescriptionInput = createElement('input', 'toDoFormElement', 'toDoDescription', '');
     toDoDescriptionInput.placeholder = 'Description';    toDoDescriptionInput.type = 'text';
     const toDoDueDateInput = createElement('input', 'toDoFormElement', 'toDoDate', '');
-    toDoDueDateInput.placeholder = 'Name of to do';  toDoDueDateInput.type = 'text';
+    toDoDueDateInput.placeholder = 'Date';  toDoDueDateInput.type = 'text';
     const submitButton = createElement('button', 'submitButton', '', 'SUBMIT');
     submitButton.addEventListener("click", () => takeAndSubmitDataFromToDoForm(toDoApp));
     const closeButton = createElement('button', 'closeButton', '', 'CLOSE');
@@ -34,11 +34,12 @@ function takeAndSubmitDataFromToDoForm(toDoApp){
 
 function createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp){
     let toDoTask = new ToDoTask(toDoName, toDoDescription, toDoDate);
-    appendToDoList(createToDoElement(toDoDescription, toDoTask.getId(), toDoApp));
+    const toDoElement = createToDoElement(toDoName, toDoTask.getId(), toDoApp)
+    appendToDoList(toDoElement);
     toDoApp.defaultProject.addToDoTask(toDoTask);
+    addEditWindowToToDo(toDoElement, toDoTask.id, toDoApp);
     console.log(`to do id -----------> ${toDoTask.name}`);
     console.log(`to do all tasks -----------> ${toDoApp.defaultProject.getAllToDos()}`);
-
 }
 
 
