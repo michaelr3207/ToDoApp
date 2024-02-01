@@ -29,7 +29,7 @@ class ToDoTask{
     }
 
     setDate(date){
-        this.date = date;
+        this.dueDate = date;
     }
 
     setName(name){
