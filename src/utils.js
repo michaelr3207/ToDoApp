@@ -1,3 +1,4 @@
+import {addEditWindowToToDo, appendToDoList, createToDoElement} from "./UI/sidebar";
 
 
 function createElement(elementType,classname, id,  innerHtml){
@@ -10,7 +11,17 @@ function createElement(elementType,classname, id,  innerHtml){
     return element;
 }
 
+function reloadSideBarToDoElements(toDoApp){
+    const toDoList = document.getElementById('listContainer');
+    toDoList.innerHTML = '';
+    toDoApp.defaultProject.toDos.forEach(item => {
+        const toDoElement = createToDoElement(item.name, item.id, toDoApp);
+        appendToDoList(toDoElement);
+        addEditWindowToToDo(toDoElement, item.id, toDoApp);
+    });
+}
 
 
 
-export {createElement};
+
+export {createElement, reloadSideBarToDoElements};

@@ -1,4 +1,4 @@
-import {createElement} from "../utils";
+import {createElement, reloadSideBarToDoElements} from "../utils";
 import AppLogo from '../images/check-outline.png';
 
 function createSideBarElement(){
@@ -63,6 +63,7 @@ function addEditWindowToToDo(toDoElement, itemId, toDoApp){
         toDoApp.defaultProject.getToDoById(itemId).setDescription(updatedDescription);
         toDoApp.defaultProject.getToDoById(itemId).setDate(updatedDate);
         expansionWindow.className = 'hide';
+        reloadSideBarToDoElements(toDoApp);
     });
     nameBox.value = toDoApp.defaultProject.getToDoById(itemId).name;
     descriptionBox.value = toDoApp.defaultProject.getToDoById(itemId).description;
