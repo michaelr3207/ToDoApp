@@ -19,11 +19,16 @@ class ToDoApp{
         this.defaultProject = new Project('Default', 'Default Project');
         this.noProjects = 0;
         this.currentlyDisplayingProjectToDos = false;
+        this.mapNumberOfProjects = 12;
     }
 
     addProject(project){
         this.allProjects.push(project);
         this.noProjects ++;
+    }
+
+    checkIfThereIsSpaceForProject(){
+        return this.noProjects < 12;
     }
 
     getCurrentlyDisplayingProjectToDos(){
@@ -33,16 +38,6 @@ class ToDoApp{
     setCurrentlyDisplayingProjectToDos(option){
        this.currentlyDisplayingProjectToDos = option;
     }
-
-    // getProjectById(id) {
-    //     this.allProjects.forEach((project, index )  => {
-    //         if(project.projectId.toString() === id.toString()){
-    //             console.log('i fiundthe adandha');
-    //             let projectFound = this.allProjects[index];
-    //             return projectFound;
-    //         }
-    //     })
-    // }
 
     getProjectById(id) {
         console.log('project ud ------> dl ' + id);

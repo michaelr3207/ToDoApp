@@ -156,7 +156,9 @@ function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId)
         currentProject.getToDoById(itemId).setDescription(updatedDescription);
         currentProject.getToDoById(itemId).setDate(updatedDate);
         currentProject.getToDoById(itemId).setName(updatedName);
+        const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + currentProject.projectId,  '');
         toDoExpansionWindow.className = 'hide';
+        // reloadToDoListElementsProjectCard(listElement)
     });
     nameBox.value = currentProject.getToDoById(itemId).name;
     dateBox.value = currentProject.getToDoById(itemId).dueDate;
@@ -167,6 +169,26 @@ function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId)
     toDoExpansionWindow.appendChild(answerBox);
     toDoExpansionWindow.appendChild(saveButton);
     listElement.appendChild(toDoExpansionWindow);
+}
+
+function  reloadToDoListElementsProjectCard(projectCardElement, projectId, toDoApp){
+    const toDoListElement = createElement('div', 'hide', projectId + 'projectToDoList', '');
+    const toDoListTitleElement = createElement('div', 'toDoListProjectTitleDiv', '', 'Current To Dos');
+    const toDoListContainer = createElement('div', 'toDoListProjectContainer', '', '');
+    const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + projectId, '');
+    const closeButton = createElement('button', 'closeButtonProjectToDoList', '', 'X');
+    showToDoButton.addEventListener("click", () => {
+        fillOrderedListWithToDoObjects(toDoListContainer, listElement, toDoApp, projectId);
+        displayOrHideProjectToDoList('display', projectId, toDoApp);
+    });
+
+    closeButton.addEventListener("click", () => {
+        displayOrHideProjectToDoList('hide', projectId, toDoApp);
+    });
+    toDoListElement.appendChild(toDoListTitleElement);
+    toDoListElement.appendChild(toDoListContainer);
+    toDoListTitleElement.appendChild(closeButton);
+    projectCardElement.appendChild(toDoListElement);
 }
 
 function displayEditWindowToDo(itemId){

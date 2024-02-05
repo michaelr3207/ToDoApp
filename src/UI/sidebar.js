@@ -27,11 +27,11 @@ function createToDoContainer(sidebarElement){
 }
 
 function createToDoElement(name, id, toDoApp){
-    const expandAndDivBtnDiv = createElement('div', 'expandAndDelteBtnDiv', '', '');
+    const expandAndDivBtnDiv = createElement('div', 'expandAndDeleteBtnDiv', '', '');
     const toDoElement = createElement('div', 'toDoElement', id + 'toDo', '');
-    const deleteBtn = createElement('button', 'deleteBtn', id, 'X');
-    const expandBtn = createElement('button', 'deleteBtn', id, '+');
-    const toDoTaskElement = createElement('div', 'toDoTask', '', name);
+    const deleteBtn = createElement('button', 'deleteBtnSidebar', id, 'X');
+    const expandBtn = createElement('button', 'expandBtnSidebar', id, '+');
+    const toDoTaskElement = createElement('div', 'toDoTask', '', `- ${name}`);
     const addBtn = createElement('button', 'addBtn', 'addButton', '+');
     expandBtn.addEventListener("click", () => {
         toDoElement.style.textDecoration = 'underline';
@@ -41,9 +41,9 @@ function createToDoElement(name, id, toDoApp){
     addEventListenerToDoTaskButtons(deleteBtn, addBtn, id,  toDoApp);
     expandAndDivBtnDiv.appendChild(deleteBtn);
     expandAndDivBtnDiv.appendChild(expandBtn);
-    toDoElement.appendChild(expandAndDivBtnDiv);
+    expandAndDivBtnDiv.appendChild(addBtn)
     toDoElement.appendChild(toDoTaskElement);
-    toDoElement.appendChild(addBtn);
+    toDoElement.appendChild(expandAndDivBtnDiv);
     console.log(toDoElement);
     return toDoElement;
 }

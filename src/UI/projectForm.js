@@ -33,10 +33,14 @@ function takeAndSubmitDataFromProjectForm(toDoApp){
 function createProjectObjectAndAddToUi(projectName, projectDescription,  toDoApp){
     let newProject = new Project(projectName, projectDescription);
     const projectGrid = document.getElementById('projectGridDiv');
-    toDoApp.addProject(newProject);
-    createProjectCard(projectGrid, projectName, projectDescription, newProject.projectId, toDoApp);
-    console.log(`to do all projects -----------> ${toDoApp.getAllProjects()}`);
-    console.log(`new project ID -----------> ${newProject.projectId}`);
+    if(toDoApp.checkIfThereIsSpaceForProject()){
+        toDoApp.addProject(newProject);
+        createProjectCard(projectGrid, projectName, projectDescription, newProject.projectId, toDoApp);
+        console.log(`to do all projects -----------> ${toDoApp.getAllProjects()}`);
+        console.log(`new project ID -----------> ${newProject.projectId}`);
+    }
+    else
+        alert(`ERROR: Max number of projects is reached!`);
 }
 
 export {createProjectForm};
