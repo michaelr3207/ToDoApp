@@ -70,7 +70,7 @@ class ToDoApp{
     }
 
     decreaseNoProjects(){
-        if(this.noProjects >= 0)
+        if(this.noProjects > 0)
             this.noProjects --;
     }
 

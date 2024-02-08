@@ -1,4 +1,4 @@
-import {createElement} from "../utils";
+import {createElement, saveApp, saveData, saveNumberOfProjects} from "../utils";
 import {ToDoTask} from "../classes/ToDo";
 import {appendToDoList, createToDoElement} from "./sidebar";
 import {Project} from "../classes/Project";
@@ -35,9 +35,11 @@ function createProjectObjectAndAddToUi(projectName, projectDescription,  toDoApp
     const projectGrid = document.getElementById('projectGridDiv');
     if(toDoApp.checkIfThereIsSpaceForProject()){
         toDoApp.addProject(newProject);
+        saveNumberOfProjects(toDoApp);
         createProjectCard(projectGrid, projectName, projectDescription, newProject.projectId, toDoApp);
         console.log(`to do all projects -----------> ${toDoApp.getAllProjects()}`);
         console.log(`new project ID -----------> ${newProject.projectId}`);
+        saveApp(toDoApp);
     }
     else
         alert(`ERROR: Max number of projects is reached!`);

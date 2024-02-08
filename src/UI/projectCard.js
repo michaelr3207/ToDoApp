@@ -1,15 +1,15 @@
-import {createElement} from "../utils";
+import {createElement, extractNumberFromElementId, saveApp, saveData} from "../utils";
 import {ToDoApp} from "../classes/ToDoApp";
 
 
 function createProjectCard(projectGrid,projectName, description, projectId, toDoApp){
     const projectCardElement = createElement('div', 'projectCard', projectId + 'project', '');
     const projectCardButtonDiv = createElement('div', 'projectButtonDiv', '', '');
-    const closeButton = createElement('button', 'closeButtonCard', projectId, 'X');
-    const addButton = createElement('button', 'addButton', '', "+");
+    const closeButton = createElement('button', 'closeButtonCard', projectId + 'closeBtnProject', 'X');
+    const addButton = createElement('button', 'addButton', projectId + 'addBtnProject', "+");
     const projectCardTitle = createElement('div', 'projectCardTitle', '', projectName);
-    const projectCardDescription = createElement('button', 'toDoButton', projectId, 'Description');
-    const showToDoButton = createElement('button', 'toDoButton', '', 'To Dos');
+    const projectCardDescription = createElement('button', 'toDoButton', projectId + 'descriptionBtnProject', 'Description');
+    const showToDoButton = createElement('button', 'toDoButton', projectId + 'showToDoBtnProject', 'To Dos');
     console.log(`project card elem,ent id  -----> ${projectCardElement.id}`);
     projectCardButtonDiv.appendChild(addButton);
     projectCardButtonDiv.appendChild(closeButton);
@@ -21,19 +21,25 @@ function createProjectCard(projectGrid,projectName, description, projectId, toDo
     projectGrid.appendChild(projectCardElement);
     addEventListenerToProjectCardButtons(closeButton, projectCardDescription, addButton, projectId, toDoApp);
     createProjectCardToDoListDisplay(projectCardElement, projectId, toDoApp, showToDoButton);
+    saveData();
 }
 
 
 function addEventListenerToProjectCardButtons(closeButton, descriptionButton, addButton, projectId,  toDoApp){
     closeButton.addEventListener("click", (event) => {
+        const extractedId = extractNumberFromElementId(event.target.id);
+        console.log(`${extractedId} this is the current id ----------`)
         const projectGridDiv = document.getElementById('projectGridDiv');
-        const cardToBeRemoved = document.getElementById(event.target.id + 'project');
+        const cardToBeRemoved = document.getElementById(Number.parseInt(extractedId) + 'project');
         projectGridDiv.removeChild(cardToBeRemoved);
-        console.log(event.target.id + '<-------------------');
-        toDoApp.removeProjectById(event.target.id);
+        console.log(extractedId + '<-------------------zz');
+        // toDoApp.removeProjectById(extractedId);
+        toDoApp.removeProjectById(Number.parseInt(extractedId));
+        saveApp(toDoApp);
+        saveData();
     });
     descriptionButton.addEventListener("click", (e) => {
-        displayProjectCardDescription(e.target.id);
+        displayProjectCardDescription(e.target.id.charAt(0));
     });
     addButton.addEventListener("click", () => {
         if(toDoApp.idOfCurrentSelectedToDo !== ''){
@@ -44,13 +50,15 @@ function addEventListenerToProjectCardButtons(closeButton, descriptionButton, ad
             toDoApp.defaultProject.removeToDoById(toDoApp.idOfCurrentSelectedToDo);
             console.log(`------------------->    --->  ${toDoApp.allProjects[0].toDos[0].description}`);
             toDoApp.idOfCurrentSelectedToDo = '';
+            saveData();
+            saveApp(toDoApp);
         }
         else{
             alert('No To DO is Selected!');
         }
     });
-
 }
+
 
 function addDescriptionBoxToProjectCard(projectCardElement, description, projectId){
     const projectDescriptionElement = createElement('div', 'hide', projectId + 'projectDescription', description);
