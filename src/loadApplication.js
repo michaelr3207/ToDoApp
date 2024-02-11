@@ -13,6 +13,14 @@ function loadMainPage(){
     // addEventListenersToProjectCardAfterReload(toDoApp);
     // // toDoApp = loadApp();
 
+    reloadLocalStorage();
+
+    // const projectGridElement = document.getElementById('projectGridDiv');
+    // main();
+    // createToDoForm();
+}
+
+function reloadLocalStorage(){
     if(localStorage.getItem("toDoApp") != null){
         console.log('there is storage available neww!');
         // saveData();
@@ -32,12 +40,7 @@ function loadMainPage(){
     else{
         const toDoApp = new ToDoApp('Basic To Do App with no storage');
     }
-
-    // const projectGridElement = document.getElementById('projectGridDiv');
-    // main();
-    // createToDoForm();
 }
-
 
 function createHeaderAndSidebarElements(contentElement, toDoApp){
     const headerElement = createElement('div', 'headerDiv', 'header', '');
@@ -48,7 +51,7 @@ function createHeaderAndSidebarElements(contentElement, toDoApp){
 }
 
 
-export {loadMainPage, createHeaderAndSidebarElements};
+export {reloadLocalStorage,loadMainPage, createHeaderAndSidebarElements};
 
 
 

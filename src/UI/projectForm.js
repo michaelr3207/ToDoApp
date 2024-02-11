@@ -3,6 +3,7 @@ import {ToDoTask} from "../classes/ToDo";
 import {appendToDoList, createToDoElement} from "./sidebar";
 import {Project} from "../classes/Project";
 import {createProjectCard} from "./projectCard";
+import {reloadLocalStorage} from "../loadApplication";
 
 
 function createProjectForm(toDoApp){
@@ -45,6 +46,7 @@ function createProjectObjectAndAddToUi(projectName, projectDescription,  toDoApp
         hideProjectForm();
         saveData();
         saveApp(toDoApp);
+        reloadLocalStorage();
     }
     else
         alert(`ERROR: Max number of projects is reached!`);
