@@ -1,6 +1,8 @@
 import {addEditWindowToToDo, appendToDoList, createToDoElement} from "./UI/sidebar";
 import {Project} from "./classes/Project";
 import {ToDoApp} from "./classes/ToDoApp";
+import {addEventListenerToNavButtons} from "./UI/header";
+import {takeAndSubmitDataFromProjectForm} from "./UI/projectForm";
 
 
 function createElement(elementType,classname, id,  innerHtml){
@@ -25,8 +27,10 @@ function reloadSideBarToDoElements(toDoApp){
 
 
 function saveData(){
+    const contentBox = document.getElementById('contentBox');
     const projectGrid = document.getElementById('projectGridDiv');
     localStorage.setItem("projects",  projectGrid.innerHTML);
+    localStorage.setItem("content",  contentBox.innerHTML);
 }
 
 function saveNumberOfProjects(toDoApp){
@@ -34,6 +38,7 @@ function saveNumberOfProjects(toDoApp){
 }
 
 function saveApp(toDoApp){
+    toDoApp.appName = `To Do App now saved`;
     localStorage.setItem("toDoApp", JSON.stringify(toDoApp));
 }
 
@@ -42,9 +47,11 @@ function loadApp(){
 }
 
 function showTasks(toDoApp){
+    const content = document.getElementById('contentBox');
+    content.innerHTML = localStorage.getItem("content");
     Project.number = localStorage.getItem("projectId")
-    const projectGrid = document.getElementById('projectGridDiv');
-    projectGrid.innerHTML = localStorage.getItem("projects");
+    // const projectGrid = document.getElementById('projectGridDiv');
+    // projectGrid.innerHTML = localStorage.getItem("projects");
     // const toDoApp = localStorage.getItem("toDoApp");
 }
 
@@ -67,7 +74,30 @@ function addEventListenersToProjectCardAfterReload(toDoApp){
             saveApp(toDoApp);
         });
     });
+    const newProjectBtn = document.getElementById('newProjectBtn');
+    const clearBtn = document.getElementById('clearAllButton');
+    const newToDoBtn = document.getElementById('newToDoBtn');
+    addEventListenerToNavButtonsAfterReload(newToDoBtn, newProjectBtn, clearBtn, toDoApp);
+    addEventListenerToProjectFormButton(toDoApp);
 }
+
+function addEventListenerToNavButtonsAfterReload(newToDoBtn, newProjectBtn, clearBtn, toDoApp){
+    newToDoBtn.addEventListener("click", () => displayToDoFormAfterReload());
+    newProjectBtn.addEventListener("click", () => displayProjectFormAfter());
+    clearBtn.addEventListener("click", () => console.log('this is the clear all butoon ----->'));
+}
+
+function displayToDoFormAfterReload(){
+    const toDoForm = document.getElementById('toDoForm');
+    toDoForm.className = 'toDoForm';
+}
+
+
+function displayProjectFormAfter(){
+    const projectForm = document.getElementById('projectForm');
+    projectForm.className = 'projectForm';
+}
+
 
 function extractNumberFromElementId(elementId){
     let result = '';
@@ -89,8 +119,23 @@ function removeProjectById(id, toDoApp){
             console.log('hsbfhsfbhsebfhsbefbhe');
             toDoApp.allProjects.splice(index, 1);
             toDoApp.noProjects --;
+            saveData();
+            saveApp(toDoApp);
         }
     }
 }
 
-export {removeProjectById, createElement, reloadSideBarToDoElements, showTasks, saveData, saveApp, addEventListenersToProjectCardAfterReload, loadApp, saveNumberOfProjects, extractNumberFromElementId};
+function addEventListenerToProjectFormButton(toDoApp){
+    const submitBtn = document.getElementById('submitBtn');
+    const closeBtn = document.getElementById('closeBtnProjectForm');
+    closeBtn.addEventListener("click", () => hideProjectForm());
+    submitBtn.addEventListener("click", () => takeAndSubmitDataFromProjectForm(toDoApp));
+}
+
+
+function  hideProjectForm(){
+    const projectForm = document.getElementById('projectForm');
+    projectForm.className = 'hide';
+}
+
+export {hideProjectForm,removeProjectById, createElement, reloadSideBarToDoElements, showTasks, saveData, saveApp, addEventListenersToProjectCardAfterReload, loadApp, saveNumberOfProjects, extractNumberFromElementId};

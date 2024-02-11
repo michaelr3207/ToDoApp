@@ -43,9 +43,9 @@ function addSecondRowToHeaderElement(headerElement, toDoApp){
 
 function addNavButtonsToHeader(secondRowElement, toDoApp){
     const navButtonElement = createElement('div','navButtons', '', '');
-    const newToDoButton = createElement('button', 'firstBtn', '', 'To Do');
-    const newProjectButton = createElement('button', 'newProjectButton', '', 'Project');
-    const clearAllButton = createElement('button', 'clearAllButton', '', 'Clear All');
+    const newToDoButton = createElement('button', 'firstBtn', 'newToDoBtn', 'To Do');
+    const newProjectButton = createElement('button', 'newProjectButton', 'newProjectBtn', 'Project');
+    const clearAllButton = createElement('button', 'clearAllButton', 'clearAllButton', 'Clear All');
     navButtonElement.appendChild(newToDoButton);
     navButtonElement.appendChild(newProjectButton);
     navButtonElement.appendChild(clearAllButton);
@@ -59,4 +59,6 @@ function addEventListenerToNavButtons(newToDoButton, newProjectButton, clearAllB
     clearAllButton.addEventListener("click", () => console.log('this is the clear all butoon ----->'));
 }
 
-export {addFirstRowToHeaderElement, addSecondRowToHeaderElement, addNavButtonsToHeader};
+
+
+export {addFirstRowToHeaderElement, addSecondRowToHeaderElement, addNavButtonsToHeader, addEventListenerToNavButtons};

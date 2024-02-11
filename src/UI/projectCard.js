@@ -1,4 +1,4 @@
-import {createElement, extractNumberFromElementId, saveApp, saveData} from "../utils";
+import {createElement, extractNumberFromElementId, removeProjectById, saveApp, saveData} from "../utils";
 import {ToDoApp} from "../classes/ToDoApp";
 
 
@@ -34,7 +34,7 @@ function addEventListenerToProjectCardButtons(closeButton, descriptionButton, ad
         projectGridDiv.removeChild(cardToBeRemoved);
         console.log(extractedId + '<-------------------zz');
         // toDoApp.removeProjectById(extractedId);
-        toDoApp.removeProjectById(Number.parseInt(extractedId));
+        removeProjectById(Number.parseInt(extractedId, toDoApp));
         saveApp(toDoApp);
         saveData();
     });

@@ -1,4 +1,4 @@
-import {addEventListenersToProjectCardAfterReload, createElement, loadApp, saveApp, showTasks} from "./utils";
+import {addEventListenersToProjectCardAfterReload, createElement, loadApp, saveApp, saveData, showTasks} from "./utils";
 import {addFirstRowToHeaderElement, addSecondRowToHeaderElement} from "./UI/header";
 import {appendToDoList, createSideBarElement, createToDoElement} from "./UI/sidebar";
 import {createProjectDisplayElement} from "./UI/projectDisplay";
@@ -9,20 +9,28 @@ import {ToDoApp} from "./classes/ToDoApp";
 
 function loadMainPage(){
     // localStorage.clear();
-
-    let toDoApp = new ToDoApp('Basic To Do App');
     // showTasks();
     // addEventListenersToProjectCardAfterReload(toDoApp);
     // // toDoApp = loadApp();
 
     if(localStorage.getItem("toDoApp") != null){
+        console.log('there is storage available neww!');
+        // saveData();
+        let toDoApp = loadApp();
+        // saveData();
+        // saveApp(toDoApp);
         console.log('there is storage available!');
-        toDoApp = loadApp();
-        saveApp(toDoApp);
+        // toDoApp = loadApp();
+        console.log(`at the start of the sace ----> ${toDoApp.appName}`)
+        // saveApp(toDoApp);
         if(toDoApp.noProjects > 0){
+            console.log('ddddddddddthere is storage available!');
             showTasks();
             addEventListenersToProjectCardAfterReload(toDoApp);
         }
+    }
+    else{
+        const toDoApp = new ToDoApp('Basic To Do App with no storage');
     }
 
     // const projectGridElement = document.getElementById('projectGridDiv');
