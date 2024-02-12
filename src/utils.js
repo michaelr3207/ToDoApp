@@ -8,6 +8,7 @@ import {
     displayProjectCardDescription,
     fillOrderedListWithToDoObjects
 } from "./UI/projectCard";
+import {hideToDoFormNew, takeAndSubmitDataFromToDoForm} from "./UI/toDoForm";
 
 
 function createElement(elementType,classname, id,  innerHtml){
@@ -96,6 +97,29 @@ function addEventListenersToProjectCardAfterReload(toDoApp){
     addEventListenerToProjectFormButton(toDoApp);
 }
 
+
+function addEventListerToAddToDoForm(toDoApp){
+    const submitButton = document.getElementById('submitBtnToDo');
+    submitButton.addEventListener("click", () => takeAndSubmitDataFromToDoForm(toDoApp));
+    const closeButton = document.getElementById('closeBtnToDo');
+    closeButton.addEventListener("click", () => hideToDoFormNew());
+}
+
+function addEventListenersToToDoObjectsAfterLocalStorageIsUsed(toDoApp) {
+    addEventListerToAddToDoForm(toDoApp);
+    toDoApp.defaultProject.toDos.forEach(item => {
+
+    });
+}
+
+function getProjectToDoById(project, id){
+        for(let item of project.toDos){
+        if(item.id.toString() === id.toString())
+            return item;
+    }
+
+}
+
 function addingEventListenerShowToDoButtonAfterReload(item, toDoApp){
     const toDoListElement = document.getElementById( item.projectId + 'projectToDoList');
     const toDoListTitleElement = createElement('div', 'toDoListProjectTitleDiv', '', 'Current To Dos');
@@ -179,4 +203,16 @@ function  hideProjectForm(){
     projectForm.className = 'hide';
 }
 
-export {getProjectById, hideProjectForm,removeProjectById, createElement, reloadSideBarToDoElements, showTasks, saveData, saveApp, addEventListenersToProjectCardAfterReload, loadApp, saveNumberOfProjects, extractNumberFromElementId};
+function removeToDoById(project, id){
+    console.log('All toDos before:  -----> ' + project.toDos);
+    for(let index = 0; index < project.toDos.length; index ++){
+        if(project.toDos[index].id.toString() === id.toString()){
+            console.log('match');
+            project.toDos.splice(index, 1);
+        }
+    }
+    console.log('All toDos after:  -----> ' + project.toDos);
+}
+
+
+export {removeToDoById, getProjectToDoById, addEventListenersToToDoObjectsAfterLocalStorageIsUsed,getProjectById, hideProjectForm,removeProjectById, createElement, reloadSideBarToDoElements, showTasks, saveData, saveApp, addEventListenersToProjectCardAfterReload, loadApp, saveNumberOfProjects, extractNumberFromElementId};

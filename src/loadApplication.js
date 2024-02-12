@@ -1,4 +1,12 @@
-import {addEventListenersToProjectCardAfterReload, createElement, loadApp, saveApp, saveData, showTasks} from "./utils";
+import {
+    addEventListenersToProjectCardAfterReload,
+    addEventListenersToToDoObjectsAfterLocalStorageIsUsed,
+    createElement,
+    loadApp,
+    saveApp,
+    saveData,
+    showTasks
+} from "./utils";
 import {addFirstRowToHeaderElement, addSecondRowToHeaderElement} from "./UI/header";
 import {appendToDoList, createSideBarElement, createToDoElement} from "./UI/sidebar";
 import {createProjectDisplayElement} from "./UI/projectDisplay";
@@ -32,9 +40,10 @@ function reloadLocalStorage(){
         // toDoApp = loadApp();
         console.log(`at the start of the sace ----> ${toDoApp.appName}`)
         // saveApp(toDoApp);
-        if(toDoApp.noProjects > 0){
+        if(toDoApp.noProjects > 0 || toDoApp.defaultProject.noOfToDos > 0){
             console.log('loading local storage....');
             showTasks();
+            addEventListenersToToDoObjectsAfterLocalStorageIsUsed(toDoApp);
             addEventListenersToProjectCardAfterReload(toDoApp);
         }
     }

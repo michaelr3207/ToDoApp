@@ -1,12 +1,13 @@
 import {
     createElement,
     extractNumberFromElementId,
-    getProjectById,
+    getProjectById, getProjectToDoById,
     removeProjectById,
     saveApp,
     saveData
 } from "../utils";
 import {ToDoApp} from "../classes/ToDoApp";
+import {reloadLocalStorage} from "../loadApplication";
 
 
 function createProjectCard(projectGrid,projectName, description, projectId, toDoApp){
@@ -137,7 +138,7 @@ function fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, pro
         buttonDiv.appendChild(closeBtnList);
         buttonDiv.appendChild(expandBtn);
         newListElement.appendChild(buttonDiv);
-        addEditWindowToToDoListProjectCard(project, newListElement, item.id);
+        addEditWindowToToDoListProjectCard(project, newListElement, item.id, toDoApp);
         listElement.appendChild(newListElement);
     });
     listContainer.appendChild(listElement);
@@ -156,7 +157,7 @@ function addEventListenerToDoListProject(closeBtnList, expandBtn, projectId, ite
     });
 }
 
-function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId){
+function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId, toDoApp){
     const toDoExpansionWindow = createElement('div', 'hide', itemId + 'expansionDiv', '' );
     const answerBox = createElement('div', 'answerBoxDiv', '', '');
     const nameBox = createElement('input', 'toDoDate', itemId + 'nameExpansionProject', '');
@@ -168,11 +169,17 @@ function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId)
         const updatedDate = dateBox.value;
         const updatedName = nameBox.value;
         // listElement.innerHTML =
-        currentProject.getToDoById(itemId).setDescription(updatedDescription);
-        currentProject.getToDoById(itemId).setDate(updatedDate);
-        currentProject.getToDoById(itemId).setName(updatedName);
+        // currentProject.getToDoById(itemId).setDescription(updatedDescription);
+        getProjectToDoById(currentProject, itemId).description = updatedDescription;
+        // currentProject.getToDoById(itemId).setDate(updatedDate);
+        getProjectToDoById(currentProject, itemId).dueDate = updatedDate;
+        // currentProject.getToDoById(itemId).setName(updatedName);
+        getProjectToDoById(currentProject, itemId).name = updatedName;
         const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + currentProject.projectId,  '');
         toDoExpansionWindow.className = 'hide';
+        saveData();
+        saveApp(toDoApp);
+        reloadLocalStorage();
         // reloadToDoListElementsProjectCard(listElement)
     });
     nameBox.value = currentProject.getToDoById(itemId).name;
