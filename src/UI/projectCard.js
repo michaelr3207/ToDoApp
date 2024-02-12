@@ -62,7 +62,7 @@ function addEventListenerToProjectCardButtons(closeButton, descriptionButton, ad
 
 function addDescriptionBoxToProjectCard(projectCardElement, description, projectId){
     const projectDescriptionElement = createElement('div', 'hide', projectId + 'projectDescription', description);
-    const projectDescriptionCloseButton = createElement('div', 'descriptionCloseBtn', '', 'X');
+    const projectDescriptionCloseButton = createElement('div', 'descriptionCloseBtn', projectId + 'projectCloseBtnOnCard', 'X');
     projectDescriptionCloseButton.addEventListener("click", () => {
         projectDescriptionElement.className = 'hide';
     })
@@ -204,4 +204,4 @@ function displayEditWindowToDo(itemId){
     windowToBeDisplayed.className = 'toDoExpansionDiv';
 }
 
-export {createProjectCard};
+export {createProjectCard, displayProjectCardDescription};

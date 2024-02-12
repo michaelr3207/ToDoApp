@@ -3,6 +3,7 @@ import {Project} from "./classes/Project";
 import {ToDoApp} from "./classes/ToDoApp";
 import {addEventListenerToNavButtons} from "./UI/header";
 import {takeAndSubmitDataFromProjectForm} from "./UI/projectForm";
+import {displayProjectCardDescription} from "./UI/projectCard";
 
 
 function createElement(elementType,classname, id,  innerHtml){
@@ -59,6 +60,7 @@ function addEventListenersToProjectCardAfterReload(toDoApp){
     console.log('hellooooooooooooooooooooooooooooooooo')
     toDoApp.allProjects.forEach(item  => {
         console.log(`Project id!!! - ${item.projectId}`);
+        const showDescriptionButton = document.getElementById(item.projectId + 'descriptionBtnProject');
         const closeButton = document.getElementById(item.projectId + 'closeBtnProject');
         closeButton.addEventListener("click", (event) => {
             const extractedId = extractNumberFromElementId(event.target.id);
@@ -73,6 +75,14 @@ function addEventListenersToProjectCardAfterReload(toDoApp){
             removeProjectById(Number.parseInt(extractedId), toDoApp);
             saveApp(toDoApp);
         });
+        showDescriptionButton.addEventListener("click", (event) => {
+            displayProjectCardDescription(Number.parseInt(extractNumberFromElementId(event.target.id)));
+        });
+        const projectDescriptionElement = document.getElementById(item.projectId + 'projectDescription');
+        const projectDescriptionCloseButton = document.getElementById(item.projectId + 'projectCloseBtnOnCard');
+        projectDescriptionCloseButton.addEventListener("click", () => {
+            projectDescriptionElement.className = 'hide';
+        })
     });
     const newProjectBtn = document.getElementById('newProjectBtn');
     const clearBtn = document.getElementById('clearAllButton');
