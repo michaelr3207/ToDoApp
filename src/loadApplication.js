@@ -18,6 +18,7 @@ function loadMainPage(){
     // const projectGridElement = document.getElementById('projectGridDiv');
     // main();
     // createToDoForm();
+    // new comment
 }
 
 function reloadLocalStorage(){
