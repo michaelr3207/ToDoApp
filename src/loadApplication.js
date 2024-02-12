@@ -33,7 +33,7 @@ function reloadLocalStorage(){
         console.log(`at the start of the sace ----> ${toDoApp.appName}`)
         // saveApp(toDoApp);
         if(toDoApp.noProjects > 0){
-            console.log('ddddddddddthere is storage available!');
+            console.log('loading local storage....');
             showTasks();
             addEventListenersToProjectCardAfterReload(toDoApp);
         }

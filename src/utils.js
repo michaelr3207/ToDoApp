@@ -3,7 +3,11 @@ import {Project} from "./classes/Project";
 import {ToDoApp} from "./classes/ToDoApp";
 import {addEventListenerToNavButtons} from "./UI/header";
 import {takeAndSubmitDataFromProjectForm} from "./UI/projectForm";
-import {displayProjectCardDescription} from "./UI/projectCard";
+import {
+    displayOrHideProjectToDoList,
+    displayProjectCardDescription,
+    fillOrderedListWithToDoObjects
+} from "./UI/projectCard";
 
 
 function createElement(elementType,classname, id,  innerHtml){
@@ -82,13 +86,30 @@ function addEventListenersToProjectCardAfterReload(toDoApp){
         const projectDescriptionCloseButton = document.getElementById(item.projectId + 'projectCloseBtnOnCard');
         projectDescriptionCloseButton.addEventListener("click", () => {
             projectDescriptionElement.className = 'hide';
-        })
+        });
+        addingEventListenerShowToDoButtonAfterReload(item, toDoApp);
     });
     const newProjectBtn = document.getElementById('newProjectBtn');
     const clearBtn = document.getElementById('clearAllButton');
     const newToDoBtn = document.getElementById('newToDoBtn');
     addEventListenerToNavButtonsAfterReload(newToDoBtn, newProjectBtn, clearBtn, toDoApp);
     addEventListenerToProjectFormButton(toDoApp);
+}
+
+function addingEventListenerShowToDoButtonAfterReload(item, toDoApp){
+    const toDoListElement = document.getElementById( item.projectId + 'projectToDoList');
+    const toDoListTitleElement = createElement('div', 'toDoListProjectTitleDiv', '', 'Current To Dos');
+    const toDoListContainer = document.getElementById( item.projectId + 'toDoListContainer');
+    const listElement = document.getElementById( 'orderedList' + item.projectId);
+    const closeButton = document.getElementById(item.projectId + 'closeBtnToListDisplay');
+    const showToDoButton = document.getElementById(item.projectId + 'showToDoBtnProject');
+    showToDoButton.addEventListener("click", () => {
+        fillOrderedListWithToDoObjects(toDoListContainer, listElement, toDoApp, item.projectId);
+        displayOrHideProjectToDoList('display', item.projectId, toDoApp);
+    });
+    closeButton.addEventListener("click", () => {
+        displayOrHideProjectToDoList('hide', item.projectId, toDoApp);
+    });
 }
 
 function addEventListenerToNavButtonsAfterReload(newToDoBtn, newProjectBtn, clearBtn, toDoApp){

@@ -82,9 +82,9 @@ function displayProjectCardDescription(id){
 function createProjectCardToDoListDisplay(projectCardElement, projectId, toDoApp, showToDoButton){
     const toDoListElement = createElement('div', 'hide', projectId + 'projectToDoList', '');
     const toDoListTitleElement = createElement('div', 'toDoListProjectTitleDiv', '', 'Current To Dos');
-    const toDoListContainer = createElement('div', 'toDoListProjectContainer', '', '');
+    const toDoListContainer = createElement('div', 'toDoListProjectContainer', projectId + 'toDoListContainer', '');
     const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + projectId, '');
-    const closeButton = createElement('button', 'closeButtonProjectToDoList', '', 'X');
+    const closeButton = createElement('button', 'closeButtonProjectToDoList', projectId + 'closeBtnToListDisplay', 'X');
     showToDoButton.addEventListener("click", () => {
         fillOrderedListWithToDoObjects(toDoListContainer, listElement, toDoApp, projectId);
         displayOrHideProjectToDoList('display', projectId, toDoApp);
@@ -204,4 +204,4 @@ function displayEditWindowToDo(itemId){
     windowToBeDisplayed.className = 'toDoExpansionDiv';
 }
 
-export {createProjectCard, displayProjectCardDescription};
+export {createProjectCard, displayProjectCardDescription, fillOrderedListWithToDoObjects, displayOrHideProjectToDoList};
