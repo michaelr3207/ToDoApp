@@ -1,4 +1,11 @@
-import {createElement, extractNumberFromElementId, removeProjectById, saveApp, saveData} from "../utils";
+import {
+    createElement,
+    extractNumberFromElementId,
+    getProjectById,
+    removeProjectById,
+    saveApp,
+    saveData
+} from "../utils";
 import {ToDoApp} from "../classes/ToDoApp";
 
 
@@ -100,24 +107,24 @@ function createProjectCardToDoListDisplay(projectCardElement, projectId, toDoApp
 }
 
 function displayOrHideProjectToDoList(option, projectId, toDoApp){
-    if(toDoApp.getCurrentlyDisplayingProjectToDos() === true && option !== 'hide'){
+    if(toDoApp.currentlyDisplayingProjectToDos === true && option !== 'hide'){
         alert('ERROR: Please Close current to do list!');
         return;
     }
     const projectToDoListElement = document.getElementById(projectId + 'projectToDoList');
     if(option === 'hide'){
-        toDoApp.setCurrentlyDisplayingProjectToDos(false);
+        toDoApp.currentlyDisplayingProjectToDos = false;
         projectToDoListElement.className = option;
     }
     else{
-        toDoApp.setCurrentlyDisplayingProjectToDos(true);
+        toDoApp.currentlyDisplayingProjectToDos = true;
         projectToDoListElement.className = 'toDoListProjectDiv';
     }
 }
 
 function fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, projectId){
     listElement.innerHTML = '';
-    const project = toDoApp.getProjectById(projectId);
+    const project = getProjectById(projectId, toDoApp);
     console.log(`tetstetstetststst -------->  ${project.projectId}`);
     project.toDos.forEach((item, index) => {
         console.log('counter ++');

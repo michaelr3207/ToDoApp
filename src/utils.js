@@ -100,7 +100,8 @@ function addingEventListenerShowToDoButtonAfterReload(item, toDoApp){
     const toDoListElement = document.getElementById( item.projectId + 'projectToDoList');
     const toDoListTitleElement = createElement('div', 'toDoListProjectTitleDiv', '', 'Current To Dos');
     const toDoListContainer = document.getElementById( item.projectId + 'toDoListContainer');
-    const listElement = document.getElementById( 'orderedList' + item.projectId);
+    // const listElement = document.getElementById( 'orderedList' + item.projectId);
+    const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + item.projectId, '');
     const closeButton = document.getElementById(item.projectId + 'closeBtnToListDisplay');
     const showToDoButton = document.getElementById(item.projectId + 'showToDoBtnProject');
     showToDoButton.addEventListener("click", () => {
@@ -156,6 +157,15 @@ function removeProjectById(id, toDoApp){
     }
 }
 
+function getProjectById(id, toDoApp){
+    for(let index = 0; index < toDoApp.allProjects.length; index ++){
+        console.log(toDoApp.allProjects[index].projectId);
+        if(toDoApp.allProjects[index].projectId === id){
+            return toDoApp.allProjects[index];
+        }
+    }
+}
+
 function addEventListenerToProjectFormButton(toDoApp){
     const submitBtn = document.getElementById('submitBtn');
     const closeBtn = document.getElementById('closeBtnProjectForm');
@@ -169,4 +179,4 @@ function  hideProjectForm(){
     projectForm.className = 'hide';
 }
 
-export {hideProjectForm,removeProjectById, createElement, reloadSideBarToDoElements, showTasks, saveData, saveApp, addEventListenersToProjectCardAfterReload, loadApp, saveNumberOfProjects, extractNumberFromElementId};
+export {getProjectById, hideProjectForm,removeProjectById, createElement, reloadSideBarToDoElements, showTasks, saveData, saveApp, addEventListenersToProjectCardAfterReload, loadApp, saveNumberOfProjects, extractNumberFromElementId};
