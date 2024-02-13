@@ -61,7 +61,7 @@ function addEditWindowToToDo(toDoElement, itemId, toDoApp){
     const nameBox = createElement('input', 'toDoExpansionNameSidebar', itemId + 'nameExpansionSidebar', '');
     const descriptionBox = createElement('textarea', 'toDoExpansionDescriptionSidebar', itemId + 'descriptionExpansionSidebar', '');
     const dateBox = createElement('input', 'toDoDateDescriptionSidebar', itemId + 'dateExpansionSidebar', '');
-    const saveButton = createElement('button', 'saveButtonToDoProjectSidebar', 'saveButtonToDoProjectSidebar', 'SAVE');
+    const saveButton = createElement('button', 'saveButtonToDoProjectSidebar', itemId + 'saveButtonToDoProjectSidebar', 'SAVE');
     saveButton.addEventListener("click", () => {
         const  updatedName = nameBox.value;
         const updatedDescription = descriptionBox.value;

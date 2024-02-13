@@ -125,6 +125,7 @@ function getProjectToDoById(project, id){
 }
 
 function addingEventListenerShowToDoButtonAfterReload(item, toDoApp){
+    const addButton = document.getElementById(item.projectId + 'addBtnProject');
     const toDoListElement = document.getElementById( item.projectId + 'projectToDoList');
     const toDoListTitleElement = createElement('div', 'toDoListProjectTitleDiv', '', 'Current To Dos');
     const toDoListContainer = document.getElementById( item.projectId + 'toDoListContainer');
@@ -139,6 +140,50 @@ function addingEventListenerShowToDoButtonAfterReload(item, toDoApp){
     closeButton.addEventListener("click", () => {
         displayOrHideProjectToDoList('hide', item.projectId, toDoApp);
     });
+    addButton.addEventListener("click", () => {
+        if(toDoApp.idOfCurrentSelectedToDo !== ''){
+            const toDoListContainer = document.getElementById('listContainer');
+            const toDoElement = document.getElementById(toDoApp.idOfCurrentSelectedToDo + 'toDo');
+            toDoListContainer.removeChild(toDoElement);
+            // toDoApp.addToDoToProject(toDoApp.idOfCurrentSelectedToDo, item.projectId);
+           checkIfToDoCanBeAdded(item.projectId, toDoApp.idOfCurrentSelectedToDo, toDoApp);
+            // toDoApp.defaultProject.removeToDoById(toDoApp.idOfCurrentSelectedToDo);
+            removeToDoById(toDoApp.defaultProject, toDoApp.idOfCurrentSelectedToDo);
+            toDoApp.defaultProject.noOfToDos --;
+            console.log(`------------------->    --->  ${toDoApp.allProjects[0].toDos[0].description}`);
+            toDoApp.idOfCurrentSelectedToDo = '';
+            saveData();
+            saveApp(toDoApp);
+        }
+        else{
+            alert('No To DO is Selected!');
+        }
+    });
+}
+
+function getToDoById(project, id){
+    let result;
+    console.log('dnfdnhbgdbhbdrf ------>');
+    project.toDos.forEach(item => {
+       if(item.id.toString() === id.toString())
+           result = item;
+    });
+    return result;
+}
+
+function checkIfToDoCanBeAdded(projectId, toDoId, toDoApp){
+    const toDo = getToDoById(toDoApp.defaultProject, toDoId);
+    console.log('dnfdnhbgdbhbdrf');
+    for(let item of toDoApp.allProjects){
+        if(item.projectId.toString() === projectId.toString()){
+            addToDoToProject(item, toDo);
+        }
+    }
+}
+
+function addToDoToProject(project, toDo){
+    project.toDos.push(toDo);
+    project.noOfToDos ++;
 }
 
 function addEventListenerToNavButtonsAfterReload(newToDoBtn, newProjectBtn, clearBtn, toDoApp){
@@ -232,12 +277,37 @@ function addEventListenerToToDOElementButtons(id, deleteBtn, addBtn, expandBtn, 
     });
 
     addBtn.addEventListener("click", () => {
-
+        toDoApp.idOfCurrentSelectedToDo = id;
     });
 
     expandBtn.addEventListener("click", () => {
-
+        const toDoElement = document.getElementById(id + 'toDo');
+        toDoElement.style.textDecoration = 'underline';
+        const sideBarExpansionElement = document.getElementById(id + 'expansionDivSidebar');
+        sideBarExpansionElement.className = 'toDoExpansionSidebar';
     });
+}
+
+function addEventListenerToDoEditWindow(id, toDoApp){
+    const expansionWindow = document.getElementById(id + 'expansionDivSidebar',);
+    const nameBox = document.getElementById(id + 'nameExpansionSidebar');
+    const dateBox = document.getElementById(id + 'dateExpansionSidebar');
+    const descriptionBox = document.getElementById(id + 'descriptionExpansionSidebar');
+    const saveButton = document.getElementById(id + 'saveButtonToDoProjectSidebar');
+    saveButton.addEventListener("click", () => {
+        const  updatedName = nameBox.value;
+        const updatedDescription = descriptionBox.value;
+        const updatedDate = dateBox.value;
+        // toDoApp.defaultProject.getToDoById(itemId).setName(updatedName);
+        getProjectToDoById(toDoApp.defaultProject, id).name = updatedName;
+        // toDoApp.defaultProject.getToDoById(itemId).setDescription(updatedDescription);
+        getProjectToDoById(toDoApp.defaultProject, id).description = updatedDescription;
+        // toDoApp.defaultProject.getToDoById(itemId).setDate(updatedDate);
+        getProjectToDoById(toDoApp.defaultProject, id).dueDate = updatedDate;
+        expansionWindow.className = 'hide';
+        reloadSideBarToDoElements(toDoApp);
+    });
+
 }
 
 export {removeToDoById, getProjectToDoById, addEventListenersToToDoObjectsAfterLocalStorageIsUsed,getProjectById, hideProjectForm,removeProjectById, createElement, reloadSideBarToDoElements, showTasks, saveData, saveApp, addEventListenersToProjectCardAfterReload, loadApp, saveNumberOfProjects, extractNumberFromElementId};
