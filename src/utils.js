@@ -9,6 +9,7 @@ import {
     fillOrderedListWithToDoObjects
 } from "./UI/projectCard";
 import {hideToDoFormNew, takeAndSubmitDataFromToDoForm} from "./UI/toDoForm";
+import {reloadLocalStorage} from "./loadApplication";
 
 
 function createElement(elementType,classname, id,  innerHtml){
@@ -108,7 +109,10 @@ function addEventListerToAddToDoForm(toDoApp){
 function addEventListenersToToDoObjectsAfterLocalStorageIsUsed(toDoApp) {
     addEventListerToAddToDoForm(toDoApp);
     toDoApp.defaultProject.toDos.forEach(item => {
-
+        const deleteBtn = document.getElementById(`${item.id}deleteBtnToDoElement`);
+        const expandBtn = document.getElementById(`${item.id}expandBtnToDoElement`);
+        const addBtn = document.getElementById(`${item.id}addBtnToDoElement`);
+        addEventListenerToToDOElementButtons(item.id, deleteBtn, addBtn, expandBtn, toDoApp);
     });
 }
 
@@ -214,5 +218,26 @@ function removeToDoById(project, id){
     console.log('All toDos after:  -----> ' + project.toDos);
 }
 
+function addEventListenerToToDOElementButtons(id, deleteBtn, addBtn, expandBtn, toDoApp){
+    deleteBtn.addEventListener("click", (e) => {
+        const toDoListContainer = document.getElementById('listContainer');
+        const toDoElement = document.getElementById(Number.parseInt(extractNumberFromElementId(e.target.id)) + 'toDo');
+        toDoListContainer.removeChild(toDoElement);
+        // toDoApp.defaultProject.removeToDoById(e.target.id);
+        removeToDoById(toDoApp.defaultProject, Number.parseInt(extractNumberFromElementId(e.target.id)));
+        toDoApp.defaultProject.noOfToDos --;
+        saveData();
+        saveApp(toDoApp);
+        reloadLocalStorage();
+    });
+
+    addBtn.addEventListener("click", () => {
+
+    });
+
+    expandBtn.addEventListener("click", () => {
+
+    });
+}
 
 export {removeToDoById, getProjectToDoById, addEventListenersToToDoObjectsAfterLocalStorageIsUsed,getProjectById, hideProjectForm,removeProjectById, createElement, reloadSideBarToDoElements, showTasks, saveData, saveApp, addEventListenersToProjectCardAfterReload, loadApp, saveNumberOfProjects, extractNumberFromElementId};

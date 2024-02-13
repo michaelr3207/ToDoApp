@@ -1,5 +1,12 @@
-import {createElement, getProjectToDoById, reloadSideBarToDoElements, removeToDoById} from "../utils";
+import {
+    createElement,
+    extractNumberFromElementId,
+    getProjectToDoById,
+    reloadSideBarToDoElements,
+    removeToDoById, saveApp, saveData
+} from "../utils";
 import AppLogo from '../images/check-outline.png';
+import {reloadLocalStorage} from "../loadApplication";
 
 function createSideBarElement(){
     const sideBarElement = createElement('div', 'sidebar', '', '');
@@ -29,10 +36,10 @@ function createToDoContainer(sidebarElement){
 function createToDoElement(name, id, toDoApp){
     const expandAndDivBtnDiv = createElement('div', 'expandAndDeleteBtnDiv', '', '');
     const toDoElement = createElement('div', 'toDoElement', id + 'toDo', '');
-    const deleteBtn = createElement('button', 'deleteBtnSidebar', id, 'X');
-    const expandBtn = createElement('button', 'expandBtnSidebar', id, '+');
+    const deleteBtn = createElement('button', 'deleteBtnSidebar', id + 'deleteBtnToDoElement', 'X');
+    const expandBtn = createElement('button', 'expandBtnSidebar', id + 'expandBtnToDoElement', '+');
     const toDoTaskElement = createElement('div', 'toDoTask', '', `- ${name}`);
-    const addBtn = createElement('button', 'addBtn', 'addButton', '+');
+    const addBtn = createElement('button', 'addBtn', id + 'addBtnToDoElement', '+');
     expandBtn.addEventListener("click", () => {
         toDoElement.style.textDecoration = 'underline';
         const sideBarExpansionElement = document.getElementById(id + 'expansionDivSidebar');
@@ -87,10 +94,14 @@ function appendToDoList(task){
 function addEventListenerToDoTaskButtons(deleteBtn, addBtn, id, toDoApp){
     deleteBtn.addEventListener("click", (e) => {
         const toDoListContainer = document.getElementById('listContainer');
-        const toDoElement = document.getElementById(e.target.id + 'toDo');
+        const toDoElement = document.getElementById(Number.parseInt(extractNumberFromElementId(e.target.id)) + 'toDo');
         toDoListContainer.removeChild(toDoElement);
         // toDoApp.defaultProject.removeToDoById(e.target.id);
-        removeToDoById(toDoApp.defaultProject, e.target.id);
+        removeToDoById(toDoApp.defaultProject, Number.parseInt(extractNumberFromElementId(e.target.id)));
+        toDoApp.defaultProject.noOfToDos --;
+        saveData();
+        saveApp(toDoApp);
+        reloadLocalStorage();
     });
     addBtn.addEventListener("click", () => {
         toDoApp.idOfCurrentSelectedToDo = id;

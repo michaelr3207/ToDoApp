@@ -40,12 +40,16 @@ function reloadLocalStorage(){
         // toDoApp = loadApp();
         console.log(`at the start of the sace ----> ${toDoApp.appName}`)
         // saveApp(toDoApp);
-        if(toDoApp.noProjects > 0 || toDoApp.defaultProject.noOfToDos > 0){
-            console.log('loading local storage....');
-            showTasks();
-            addEventListenersToToDoObjectsAfterLocalStorageIsUsed(toDoApp);
-            addEventListenersToProjectCardAfterReload(toDoApp);
-        }
+        console.log('loading local storage....');
+        showTasks();
+        addEventListenersToToDoObjectsAfterLocalStorageIsUsed(toDoApp);
+        addEventListenersToProjectCardAfterReload(toDoApp);
+        // if(toDoApp.noProjects > 0 || toDoApp.defaultProject.noOfToDos > 0){
+        //     console.log('loading local storage....');
+        //     showTasks();
+        //     addEventListenersToToDoObjectsAfterLocalStorageIsUsed(toDoApp);
+        //     addEventListenersToProjectCardAfterReload(toDoApp);
+        // }
     }
     else{
         const toDoApp = new ToDoApp('Basic To Do App with no storage');
