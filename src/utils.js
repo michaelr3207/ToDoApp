@@ -66,6 +66,8 @@ function addEventListenersToProjectCardAfterReload(toDoApp){
     console.log('hellooooooooooooooooooooooooooooooooo')
     toDoApp.allProjects.forEach(item  => {
         console.log(`Project id!!! - ${item.projectId}`);
+        const showToDoListButton = document.getElementById(item.projectId + 'showToDoBtnProject');
+        addEventListenerToShowToDoListDisplayForSpecificProject(showToDoListButton, item, toDoApp);
         const showDescriptionButton = document.getElementById(item.projectId + 'descriptionBtnProject');
         const closeButton = document.getElementById(item.projectId + 'closeBtnProject');
         closeButton.addEventListener("click", (event) => {
@@ -98,6 +100,20 @@ function addEventListenersToProjectCardAfterReload(toDoApp){
     addEventListenerToProjectFormButton(toDoApp);
 }
 
+function addEventListenerToShowToDoListDisplayForSpecificProject(showToDoBtn, itemProject, toDoApp) {
+    const listContainer = document.getElementById(itemProject.projectId + 'toDoListContainer');
+    const fetchedListElement = document.getElementById('orderedList' + itemProject.projectId);
+    if(fetchedListElement !== null){
+        listContainer.removeChild(fetchedListElement);
+    }
+    const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + itemProject.projectId, '');
+    showToDoBtn.addEventListener("click", () => {
+        fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, itemProject.projectId);
+        displayOrHideProjectToDoList('display', itemProject.projectId, toDoApp);
+    });
+
+}
+
 
 function addEventListerToAddToDoForm(toDoApp){
     const submitButton = document.getElementById('submitBtnToDo');
@@ -113,6 +129,7 @@ function addEventListenersToToDoObjectsAfterLocalStorageIsUsed(toDoApp) {
         const expandBtn = document.getElementById(`${item.id}expandBtnToDoElement`);
         const addBtn = document.getElementById(`${item.id}addBtnToDoElement`);
         addEventListenerToToDOElementButtons(item.id, deleteBtn, addBtn, expandBtn, toDoApp);
+        addEventListenerToDoEditWindow(item.id, toDoApp);
     });
 }
 
@@ -133,10 +150,10 @@ function addingEventListenerShowToDoButtonAfterReload(item, toDoApp){
     const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + item.projectId, '');
     const closeButton = document.getElementById(item.projectId + 'closeBtnToListDisplay');
     const showToDoButton = document.getElementById(item.projectId + 'showToDoBtnProject');
-    showToDoButton.addEventListener("click", () => {
-        fillOrderedListWithToDoObjects(toDoListContainer, listElement, toDoApp, item.projectId);
-        displayOrHideProjectToDoList('display', item.projectId, toDoApp);
-    });
+    // showToDoButton.addEventListener("click", () => {
+    //     fillOrderedListWithToDoObjects(toDoListContainer, listElement, toDoApp, item.projectId);
+    //     displayOrHideProjectToDoList('display', item.projectId, toDoApp);
+    // });
     closeButton.addEventListener("click", () => {
         displayOrHideProjectToDoList('hide', item.projectId, toDoApp);
     });
@@ -306,6 +323,9 @@ function addEventListenerToDoEditWindow(id, toDoApp){
         getProjectToDoById(toDoApp.defaultProject, id).dueDate = updatedDate;
         expansionWindow.className = 'hide';
         reloadSideBarToDoElements(toDoApp);
+        saveData();
+        saveApp(toDoApp);
+        reloadLocalStorage();
     });
 
 }
