@@ -165,7 +165,7 @@ function addEventListenerToDoListProject(closeBtnList, expandBtn, projectId, ite
         removeToDoById(getProjectById(projectId, toDoApp), itemId);
         saveData();
         saveApp(toDoApp);
-        reloadLocalStorage();
+        // reloadLocalStorage();
     });
     expandBtn.addEventListener("click", () => {
        displayEditWindowToDo(itemId, toDoApp);
