@@ -140,8 +140,8 @@ function fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, pro
         newListElement.appendChild(buttonDiv);
         addEditWindowToToDoListProjectCard(project, newListElement, item.id, toDoApp);
         listElement.appendChild(newListElement);
-        // saveData();
-        // saveApp(toDoApp);
+        saveData();
+        saveApp(toDoApp);
         // reloadLocalStorage();
     });
     listContainer.appendChild(listElement);
@@ -154,13 +154,21 @@ function addEventListenerToDoListProject(closeBtnList, expandBtn, projectId, ite
         const toDoToBeRemoved = document.getElementById(itemId + 'toDoListProject');
         listOfToDos.removeChild(toDoToBeRemoved);
         // toDoApp.getProjectById(projectId).removeToDoById(itemId);
+        const listContainer = document.getElementById(projectId + 'toDoListContainer');
+        const fetchedListElement = document.getElementById('orderedList' + projectId);
+        if(fetchedListElement !== null){
+            listContainer.removeChild(fetchedListElement);
+        }
+        const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + projectId, '');
+        fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, projectId);
+
         removeToDoById(getProjectById(projectId, toDoApp), itemId);
         saveData();
         saveApp(toDoApp);
         reloadLocalStorage();
     });
     expandBtn.addEventListener("click", () => {
-       displayEditWindowToDo(itemId);
+       displayEditWindowToDo(itemId, toDoApp);
     });
 }
 
@@ -186,7 +194,7 @@ function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId,
         toDoExpansionWindow.className = 'hide';
         saveData();
         saveApp(toDoApp);
-        reloadLocalStorage();
+        // reloadLocalStorage();
         // reloadToDoListElementsProjectCard(listElement)
     });
     // nameBox.value = currentProject.getToDoById(itemId).name;
@@ -221,9 +229,11 @@ function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId,
 //     projectCardElement.appendChild(toDoListElement);
 // }
 
-function displayEditWindowToDo(itemId){
+function displayEditWindowToDo(itemId, toDoApp){
     const windowToBeDisplayed = document.getElementById(itemId + 'expansionDiv');
     windowToBeDisplayed.className = 'toDoExpansionDiv';
+    saveData();
+    saveApp(toDoApp);
 }
 
 export {createProjectCard, displayProjectCardDescription, fillOrderedListWithToDoObjects, displayOrHideProjectToDoList};
