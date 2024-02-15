@@ -10,6 +10,8 @@ import {ToDoApp} from "../classes/ToDoApp";
 import {reloadLocalStorage} from "../loadApplication";
 
 
+// comment for merge
+
 function createProjectCard(projectGrid,projectName, description, projectId, toDoApp){
     const projectCardElement = createElement('div', 'projectCard', projectId + 'project', '');
     const projectCardButtonDiv = createElement('div', 'projectButtonDiv', '', '');
