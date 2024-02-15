@@ -1,7 +1,7 @@
 import {
     createElement,
     extractNumberFromElementId,
-    getProjectById, getProjectToDoById,
+    getProjectById, getProjectToDoById, loadApp,
     removeProjectById, removeToDoById,
     saveApp,
     saveData
@@ -9,6 +9,8 @@ import {
 import {ToDoApp} from "../classes/ToDoApp";
 import {reloadLocalStorage} from "../loadApplication";
 
+
+// comment for merge
 
 function createProjectCard(projectGrid,projectName, description, projectId, toDoApp){
     const projectCardElement = createElement('div', 'projectCard', projectId + 'project', '');
@@ -94,6 +96,7 @@ function createProjectCardToDoListDisplay(projectCardElement, projectId, toDoApp
     const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + projectId, '');
     const closeButton = createElement('button', 'closeButtonProjectToDoList', projectId + 'closeBtnToListDisplay', 'X');
     showToDoButton.addEventListener("click", () => {
+        reloadListAfterDeletion(projectId, toDoApp);
         fillOrderedListWithToDoObjects(toDoListContainer, listElement, toDoApp, projectId);
         displayOrHideProjectToDoList('display', projectId, toDoApp);
     });
@@ -163,13 +166,28 @@ function addEventListenerToDoListProject(closeBtnList, expandBtn, projectId, ite
         fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, projectId);
 
         removeToDoById(getProjectById(projectId, toDoApp), itemId);
-        saveData();
+        reloadListAfterDeletion(projectId, toDoApp);
+        // saveData();
         saveApp(toDoApp);
+        // toDoApp = loadApp();
+        // reloadLocalStorage();  //ToDo add in the fill up list method here
         // reloadLocalStorage();
     });
     expandBtn.addEventListener("click", () => {
        displayEditWindowToDo(itemId, toDoApp);
     });
+}
+
+function reloadListAfterDeletion(projectId, toDoApp){
+    console.log('runmnggomg ,ammm');
+    const listContainer = document.getElementById(projectId + 'toDoListContainer');
+    const fetchedListElement = document.getElementById('orderedList' + projectId);
+    if(fetchedListElement !== null){
+        console.log('runmnggomg ,ammm ------------------------------>');
+        listContainer.removeChild(fetchedListElement);
+    }
+    const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + projectId, '');
+    fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, projectId);
 }
 
 function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId, toDoApp){
@@ -236,4 +254,4 @@ function displayEditWindowToDo(itemId, toDoApp){
     saveApp(toDoApp);
 }
 
-export {createProjectCard, displayProjectCardDescription, fillOrderedListWithToDoObjects, displayOrHideProjectToDoList};
+export {reloadListAfterDeletion, createProjectCard, displayProjectCardDescription, fillOrderedListWithToDoObjects, displayOrHideProjectToDoList};

@@ -1,4 +1,12 @@
-import {createElement, displayToDoForm, hideToDoForm, saveApp, saveData} from "../utils";
+import {
+    createElement,
+    displayToDoForm,
+    hideToDoForm,
+    saveApp,
+    saveData,
+    saveNumberOfProjects,
+    saveNumberOfToDo
+} from "../utils";
 import {addEditWindowToToDo, appendToDoList, createToDoElement} from "./sidebar";
 import {ToDoTask} from "../classes/ToDo";
 import {reloadLocalStorage} from "../loadApplication";
@@ -41,10 +49,11 @@ function takeAndSubmitDataFromToDoForm(toDoApp){
 
 function createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp){
     let toDoTask = new ToDoTask(toDoName, toDoDescription, toDoDate);
-    const toDoElement = createToDoElement(toDoName, toDoTask.getId(), toDoApp)
+    const toDoElement = createToDoElement(toDoName, toDoTask.id, toDoApp)
     appendToDoList(toDoElement);
     toDoApp.defaultProject.toDos.push(toDoTask);
     toDoApp.defaultProject.noOfToDos ++;
+    saveNumberOfToDo(toDoApp);
     addEditWindowToToDo(toDoElement, toDoTask.id, toDoApp);
     hideToDoFormNew();
     saveData();
