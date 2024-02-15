@@ -6,7 +6,7 @@ import {takeAndSubmitDataFromProjectForm} from "./UI/projectForm";
 import {
     displayOrHideProjectToDoList,
     displayProjectCardDescription,
-    fillOrderedListWithToDoObjects
+    fillOrderedListWithToDoObjects, reloadListAfterDeletion
 } from "./UI/projectCard";
 import {hideToDoFormNew, takeAndSubmitDataFromToDoForm} from "./UI/toDoForm";
 import {reloadLocalStorage} from "./loadApplication";
@@ -116,7 +116,8 @@ function addEventListenerToShowToDoListDisplayForSpecificProject(showToDoBtn, it
     }
     const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + itemProject.projectId, '');
     showToDoBtn.addEventListener("click", () => {
-        fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, itemProject.projectId);
+        reloadListAfterDeletion(itemProject.projectId, toDoApp);
+        // fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, itemProject.projectId);
         displayOrHideProjectToDoList('display', itemProject.projectId, toDoApp);
     });
 
