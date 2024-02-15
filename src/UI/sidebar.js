@@ -22,7 +22,7 @@ function createSideBarLogoAndTitle(sidebarElement){
     const appLogoImage = new Image();
     appLogoImage.src = AppLogo;
     sidebarImageElement.appendChild(appLogoImage);
-    const dashTitleDiv = createElement('div', 'dashTitle', '', 'To Do App');
+    const dashTitleDiv = createElement('div', 'dashTitle', '', 'Testing Build');
     sideBarLogoAndTitle.appendChild(sidebarImageElement);
     sideBarLogoAndTitle.appendChild(dashTitleDiv);
     sidebarElement.appendChild(sideBarLogoAndTitle);

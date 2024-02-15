@@ -10,6 +10,7 @@ import {
 } from "./UI/projectCard";
 import {hideToDoFormNew, takeAndSubmitDataFromToDoForm} from "./UI/toDoForm";
 import {reloadLocalStorage} from "./loadApplication";
+import {ToDoTask} from "./classes/ToDo";
 
 
 function createElement(elementType,classname, id,  innerHtml){
@@ -44,6 +45,12 @@ function saveNumberOfProjects(toDoApp){
     localStorage.setItem("projectId", Project.number.toString());
 }
 
+function saveNumberOfToDo(toDoApp){
+    console.log(`this is the current number of the static to do tasl ${ToDoTask.number}`);
+    localStorage.setItem("toDoId", ToDoTask.number.toString());
+}
+
+
 function saveApp(toDoApp){
     toDoApp.appName = `To Do App now saved`;
     localStorage.setItem("toDoApp", JSON.stringify(toDoApp));
@@ -57,6 +64,7 @@ function showTasks(toDoApp){
     const content = document.getElementById('contentBox');
     content.innerHTML = localStorage.getItem("content");
     Project.number = localStorage.getItem("projectId")
+    ToDoTask.number = localStorage.getItem("toDoId");
     // const projectGrid = document.getElementById('projectGridDiv');
     // projectGrid.innerHTML = localStorage.getItem("projects");
     // const toDoApp = localStorage.getItem("toDoApp");
@@ -330,4 +338,4 @@ function addEventListenerToDoEditWindow(id, toDoApp){
 
 }
 
-export {removeToDoById, getProjectToDoById, addEventListenersToToDoObjectsAfterLocalStorageIsUsed,getProjectById, hideProjectForm,removeProjectById, createElement, reloadSideBarToDoElements, showTasks, saveData, saveApp, addEventListenersToProjectCardAfterReload, loadApp, saveNumberOfProjects, extractNumberFromElementId};
+export {saveNumberOfToDo, removeToDoById, getProjectToDoById, addEventListenersToToDoObjectsAfterLocalStorageIsUsed,getProjectById, hideProjectForm,removeProjectById, createElement, reloadSideBarToDoElements, showTasks, saveData, saveApp, addEventListenersToProjectCardAfterReload, loadApp, saveNumberOfProjects, extractNumberFromElementId};

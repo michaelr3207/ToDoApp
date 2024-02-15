@@ -165,11 +165,22 @@ function addEventListenerToDoListProject(closeBtnList, expandBtn, projectId, ite
         removeToDoById(getProjectById(projectId, toDoApp), itemId);
         saveData();
         saveApp(toDoApp);
-        // reloadLocalStorage();
+        // reloadLocalStorage();  //ToDo add in the fill up list method here
+        reloadListAfterDeletion(projectId, toDoApp);
     });
     expandBtn.addEventListener("click", () => {
        displayEditWindowToDo(itemId, toDoApp);
     });
+}
+
+function reloadListAfterDeletion(projectId, toDoApp){
+    const listContainer = document.getElementById(projectId + 'toDoListContainer');
+    const fetchedListElement = document.getElementById('orderedList' + projectId);
+    if(fetchedListElement !== null){
+        listContainer.removeChild(fetchedListElement);
+    }
+    const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + projectId, '');
+    fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, projectId);
 }
 
 function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId, toDoApp){
