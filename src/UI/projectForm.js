@@ -36,7 +36,6 @@ function createProjectObjectAndAddToUi(projectName, projectDescription,  toDoApp
     console.log(`this is the name --------> ${toDoApp.appName}`);
     const projectGrid = document.getElementById('projectGridDiv');
     if(toDoApp.noProjects <= 12){
-        console.log('mrmfesoemefsfddddddddd');
         toDoApp.allProjects.push(newProject);
         toDoApp.noProjects ++;
         saveNumberOfProjects(toDoApp);

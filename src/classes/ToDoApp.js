@@ -22,81 +22,9 @@ class ToDoApp{
         this.mapNumberOfProjects = 12;
     }
 
-    addProject(project){
-        this.allProjects.push(project);
-        this.noProjects ++;
-    }
-
-    checkIfThereIsSpaceForProject(){
-        return this.noProjects < 12;
-    }
-
-    getCurrentlyDisplayingProjectToDos(){
-        return this.currentlyDisplayingProjectToDos;
-    }
-
-    setCurrentlyDisplayingProjectToDos(option){
-       this.currentlyDisplayingProjectToDos = option;
-    }
-
-    getProjectById(id) {
-        console.log('project ud ------> dl ' + id);
-        for(let index = 0; index < this.allProjects.length; index ++){
-            if(this.allProjects[index].projectId.toString() === id.toString()){
-                console.log('match issnadnj');
-                console.log('---------------> hlele' + this.allProjects[index].title);
-                return this.allProjects[index];
-            }
-        }
-    }
-
-    removeProjectById(id){
-        console.log('All cards before:  -----> ' + this.allProjects);
-        for(let index = 0; index < this.allProjects.length; index ++){
-            if(this.allProjects[index].projectId.toString() === id.toString()){
-               this.allProjects.splice(index, 1);
-               this.decreaseNoProjects();
-            }
-        }
-        console.log('All cards after:  -----> ' + this.getAllProjects());
-    }
-
-    // addToDo(toDo){
-    //     this.allToDos.push(toDo);
-    // }
-
-    getAllProjects(){
-        return this.allProjects;
-    }
-
-    decreaseNoProjects(){
-        if(this.noProjects > 0)
-            this.noProjects --;
-    }
-
-    getAllToDos(){
-        return this.allToDos;
-    }
-
-    getToDoAtIndex(index){
-        return this.allToDos[index];
-    }
-
-    getAppName(){
-        return this.appName;
-    }
-
-    setAppName(name){
-        this.appName = name;
-    }
      displayToDoForm(){
         const toDoForm = document.getElementById('toDoForm');
         toDoForm.className = 'toDoForm';
-    }
-
-     hideToDoForm(){
-        const toDoForm = document.getElementById('toDoForm');
-        toDoForm.className = 'hide';
     }
 
     displayProjectForm(){

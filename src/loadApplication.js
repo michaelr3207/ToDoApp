@@ -11,45 +11,25 @@ import {addFirstRowToHeaderElement, addSecondRowToHeaderElement} from "./UI/head
 import {appendToDoList, createSideBarElement, createToDoElement} from "./UI/sidebar";
 import {createProjectDisplayElement} from "./UI/projectDisplay";
 import {createProjectCard} from "./UI/projectCard";
-import {main} from "./mainApp";
 import {createToDoForm} from "./UI/toDoForm";
 import {ToDoApp} from "./classes/ToDoApp";
 
 function loadMainPage(){
     // localStorage.clear();
-    // showTasks();
-    // addEventListenersToProjectCardAfterReload(toDoApp);
-    // // toDoApp = loadApp();
-
     reloadLocalStorage();
-
-    // const projectGridElement = document.getElementById('projectGridDiv');
-    // main();
-    // createToDoForm();
-    // new comment
 }
 
 function reloadLocalStorage(){
     if(localStorage.getItem("toDoApp") != null){
         console.log('there is storage available neww!');
-        // saveData();
         let toDoApp = loadApp();
-        // saveData();
-        // saveApp(toDoApp);
         console.log('there is storage available!');
-        // toDoApp = loadApp();
         console.log(`at the start of the sace ----> ${toDoApp.appName}`)
-        // saveApp(toDoApp);
         console.log('loading local storage....');
         showTasks();
         addEventListenersToToDoObjectsAfterLocalStorageIsUsed(toDoApp);
         addEventListenersToProjectCardAfterReload(toDoApp);
-        // if(toDoApp.noProjects > 0 || toDoApp.defaultProject.noOfToDos > 0){
-        //     console.log('loading local storage....');
-        //     showTasks();
-        //     addEventListenersToToDoObjectsAfterLocalStorageIsUsed(toDoApp);
-        //     addEventListenersToProjectCardAfterReload(toDoApp);
-        // }
+
     }
     else{
         const toDoApp = new ToDoApp('Basic To Do App with no storage');
@@ -60,7 +40,7 @@ function createHeaderAndSidebarElements(contentElement, toDoApp){
     const headerElement = createElement('div', 'headerDiv', 'header', '');
     addFirstRowToHeaderElement(headerElement);
     addSecondRowToHeaderElement(headerElement, toDoApp);
-    contentElement.appendChild(headerElement);  // adding the header to the DOM
+    contentElement.appendChild(headerElement);
     contentElement.appendChild(createSideBarElement());
 }
 

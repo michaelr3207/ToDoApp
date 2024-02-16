@@ -3,6 +3,7 @@
 class Project{
 
     static number = 1;
+
     constructor(projectName, description) {
         this.currentSelectedToDo = '';
         this.name = projectName;
@@ -12,23 +13,11 @@ class Project{
         this.toDos = [];
     }
 
-    getId(){
-        return this.projectId;
-    }
-
     getToDoById(id){
         for(let item of this.toDos){
             if(item.id.toString() === id.toString())
                 return item;
         }
-    }
-
-    getCurrentSelectedToDo(){
-        return this.currentSelectedToDo;
-    }
-
-    setCurrentSelectedToDo(toDo){
-        this.currentSelectedToDo = toDo;
     }
 
     removeToDoById(id){
@@ -48,19 +37,6 @@ class Project{
             this.toDos.push(task);
         }
     }
-
-    addToTask(task){
-        if(task != null){
-            this.noOfToDos ++;
-            this.toDos.push(task);
-        }
-    }
-
-    getAllToDos(){
-        console.log(this.toDos[0]);
-        return this.toDos;
-    }
-
 
 }
 

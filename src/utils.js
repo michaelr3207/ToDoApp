@@ -65,13 +65,9 @@ function showTasks(toDoApp){
     content.innerHTML = localStorage.getItem("content");
     Project.number = localStorage.getItem("projectId")
     ToDoTask.number = localStorage.getItem("toDoId");
-    // const projectGrid = document.getElementById('projectGridDiv');
-    // projectGrid.innerHTML = localStorage.getItem("projects");
-    // const toDoApp = localStorage.getItem("toDoApp");
 }
 
 function addEventListenersToProjectCardAfterReload(toDoApp){
-    console.log('hellooooooooooooooooooooooooooooooooo')
     toDoApp.allProjects.forEach(item  => {
         console.log(`Project id!!! - ${item.projectId}`);
         const showToDoListButton = document.getElementById(item.projectId + 'showToDoBtnProject');
@@ -80,14 +76,11 @@ function addEventListenersToProjectCardAfterReload(toDoApp){
         const closeButton = document.getElementById(item.projectId + 'closeBtnProject');
         closeButton.addEventListener("click", (event) => {
             const extractedId = extractNumberFromElementId(event.target.id);
-            console.log(`Char at!!! - ${event.target.id.charAt(0)}`);
             console.log(`${extractedId} this is the current id ----------`)
-            console.log('bro sdfksamfkms')
             const projectGridDiv = document.getElementById('projectGridDiv');
             const cardToBeRemoved = document.getElementById(Number.parseInt(extractedId) + 'project');
             projectGridDiv.removeChild(cardToBeRemoved);
             saveData();
-            console.log(extractedId + '<------------------- here');
             removeProjectById(Number.parseInt(extractedId), toDoApp);
             saveApp(toDoApp);
         });
@@ -117,7 +110,6 @@ function addEventListenerToShowToDoListDisplayForSpecificProject(showToDoBtn, it
     const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + itemProject.projectId, '');
     showToDoBtn.addEventListener("click", () => {
         reloadListAfterDeletion(itemProject.projectId, toDoApp);
-        // fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, itemProject.projectId);
         displayOrHideProjectToDoList('display', itemProject.projectId, toDoApp);
     });
 
@@ -152,17 +144,7 @@ function getProjectToDoById(project, id){
 
 function addingEventListenerShowToDoButtonAfterReload(item, toDoApp){
     const addButton = document.getElementById(item.projectId + 'addBtnProject');
-    const toDoListElement = document.getElementById( item.projectId + 'projectToDoList');
-    const toDoListTitleElement = createElement('div', 'toDoListProjectTitleDiv', '', 'Current To Dos');
-    const toDoListContainer = document.getElementById( item.projectId + 'toDoListContainer');
-    // const listElement = document.getElementById( 'orderedList' + item.projectId);
-    const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + item.projectId, '');
     const closeButton = document.getElementById(item.projectId + 'closeBtnToListDisplay');
-    const showToDoButton = document.getElementById(item.projectId + 'showToDoBtnProject');
-    // showToDoButton.addEventListener("click", () => {
-    //     fillOrderedListWithToDoObjects(toDoListContainer, listElement, toDoApp, item.projectId);
-    //     displayOrHideProjectToDoList('display', item.projectId, toDoApp);
-    // });
     closeButton.addEventListener("click", () => {
         displayOrHideProjectToDoList('hide', item.projectId, toDoApp);
     });
@@ -171,9 +153,7 @@ function addingEventListenerShowToDoButtonAfterReload(item, toDoApp){
             const toDoListContainer = document.getElementById('listContainer');
             const toDoElement = document.getElementById(toDoApp.idOfCurrentSelectedToDo + 'toDo');
             toDoListContainer.removeChild(toDoElement);
-            // toDoApp.addToDoToProject(toDoApp.idOfCurrentSelectedToDo, item.projectId);
            checkIfToDoCanBeAdded(item.projectId, toDoApp.idOfCurrentSelectedToDo, toDoApp);
-            // toDoApp.defaultProject.removeToDoById(toDoApp.idOfCurrentSelectedToDo);
             removeToDoById(toDoApp.defaultProject, toDoApp.idOfCurrentSelectedToDo);
             toDoApp.defaultProject.noOfToDos --;
             console.log(`------------------->    --->  ${toDoApp.allProjects[0].toDos[0].description}`);
@@ -234,7 +214,6 @@ function extractNumberFromElementId(elementId){
     let result = '';
     for(let index = 0; index < elementId.length; index ++){
         if(!elementId[index].isNaN){
-            console.log('letter:  ' + elementId[index] );
             result += elementId[index];
         }
     }
@@ -294,7 +273,6 @@ function addEventListenerToToDOElementButtons(id, deleteBtn, addBtn, expandBtn, 
         const toDoListContainer = document.getElementById('listContainer');
         const toDoElement = document.getElementById(Number.parseInt(extractNumberFromElementId(e.target.id)) + 'toDo');
         toDoListContainer.removeChild(toDoElement);
-        // toDoApp.defaultProject.removeToDoById(e.target.id);
         removeToDoById(toDoApp.defaultProject, Number.parseInt(extractNumberFromElementId(e.target.id)));
         toDoApp.defaultProject.noOfToDos --;
         saveData();
@@ -324,11 +302,8 @@ function addEventListenerToDoEditWindow(id, toDoApp){
         const  updatedName = nameBox.value;
         const updatedDescription = descriptionBox.value;
         const updatedDate = dateBox.value;
-        // toDoApp.defaultProject.getToDoById(itemId).setName(updatedName);
         getProjectToDoById(toDoApp.defaultProject, id).name = updatedName;
-        // toDoApp.defaultProject.getToDoById(itemId).setDescription(updatedDescription);
         getProjectToDoById(toDoApp.defaultProject, id).description = updatedDescription;
-        // toDoApp.defaultProject.getToDoById(itemId).setDate(updatedDate);
         getProjectToDoById(toDoApp.defaultProject, id).dueDate = updatedDate;
         expansionWindow.className = 'hide';
         reloadSideBarToDoElements(toDoApp);

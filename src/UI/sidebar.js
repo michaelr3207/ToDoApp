@@ -66,11 +66,8 @@ function addEditWindowToToDo(toDoElement, itemId, toDoApp){
         const  updatedName = nameBox.value;
         const updatedDescription = descriptionBox.value;
         const updatedDate = dateBox.value;
-        // toDoApp.defaultProject.getToDoById(itemId).setName(updatedName);
         getProjectToDoById(toDoApp.defaultProject, itemId).name = updatedName;
-        // toDoApp.defaultProject.getToDoById(itemId).setDescription(updatedDescription);
         getProjectToDoById(toDoApp.defaultProject, itemId).description = updatedDescription;
-        // toDoApp.defaultProject.getToDoById(itemId).setDate(updatedDate);
         getProjectToDoById(toDoApp.defaultProject, itemId).dueDate = updatedDate;
         expansionWindow.className = 'hide';
         reloadSideBarToDoElements(toDoApp);
@@ -96,7 +93,6 @@ function addEventListenerToDoTaskButtons(deleteBtn, addBtn, id, toDoApp){
         const toDoListContainer = document.getElementById('listContainer');
         const toDoElement = document.getElementById(Number.parseInt(extractNumberFromElementId(e.target.id)) + 'toDo');
         toDoListContainer.removeChild(toDoElement);
-        // toDoApp.defaultProject.removeToDoById(e.target.id);
         removeToDoById(toDoApp.defaultProject, Number.parseInt(extractNumberFromElementId(e.target.id)));
         toDoApp.defaultProject.noOfToDos --;
         saveData();
