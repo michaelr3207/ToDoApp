@@ -12,7 +12,7 @@ function addFirstRowToHeaderElement(headerElement){
     const searchInput = createElement('input', 'inputBox', '', '');
     searchInput.name = 'searchBox';  // may not be used
     const iconBarElement = createElement('div', 'iconBar', '', '');
-    const userNameElement = createElement('div', 'userName', '', 'John Doe');
+    const userNameElement = createElement('div', 'userName', '', 'John McGoo');
 
     searchIconImage.src = MagnifyImage;
     bellImage.src = BellImage;
