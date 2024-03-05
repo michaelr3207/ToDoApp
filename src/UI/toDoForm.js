@@ -20,6 +20,8 @@ function createToDoForm(toDoApp){
     toDoDescriptionInput.placeholder = 'Description';    toDoDescriptionInput.type = 'text';
     const toDoDueDateInput = createElement('input', 'toDoFormElement', 'toDoDate', '');
     toDoDueDateInput.placeholder = 'Date';  toDoDueDateInput.type = 'text';
+    const toDoDuePriorityInput = createElement('input', 'toDoFormElement', 'toDoPriority', '');
+    toDoDuePriorityInput.placeholder = 'Priority';  toDoDueDateInput.type = 'text';
     const submitButton = createElement('button', 'submitButton', 'submitBtnToDo', 'SUBMIT');
     submitButton.addEventListener("click", () => takeAndSubmitDataFromToDoForm(toDoApp));
     const closeButton = createElement('button', 'closeButton', 'closeBtnToDo', 'CLOSE');
@@ -27,6 +29,7 @@ function createToDoForm(toDoApp){
     formElement.appendChild(toDoNameInput);
     formElement.appendChild(toDoDescriptionInput);
     formElement.appendChild(toDoDueDateInput);
+    formElement.appendChild(toDoDuePriorityInput);
     formElement.appendChild(submitButton);
     formElement.appendChild(closeButton);
     contentElement.appendChild(formElement);
@@ -43,12 +46,13 @@ function takeAndSubmitDataFromToDoForm(toDoApp){
     const toDoName = document.getElementById('toDoName').value;
     const toDoDescription = document.getElementById('toDoDescription').value;
     const toDoDate = document.getElementById('toDoDate').value;
-    createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp);
+    const toDoPriority = document.getElementById('toDoPriority').value.toLowerCase();
+    createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp, toDoPriority);
 }
 
 
-function createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp){
-    let toDoTask = new ToDoTask(toDoName, toDoDescription, toDoDate);
+function createToDoObjectAndAddToUi(toDoName, toDoDescription, toDoDate, toDoApp, priority){
+    let toDoTask = new ToDoTask(toDoName, toDoDescription, toDoDate, priority);
     const toDoElement = createToDoElement(toDoName, toDoTask.id, toDoApp)
     appendToDoList(toDoElement);
     toDoApp.defaultProject.toDos.push(toDoTask);

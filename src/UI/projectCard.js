@@ -131,12 +131,15 @@ function fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, pro
     console.log(`tetstetstetststst -------->  ${project.projectId}`);
     project.toDos.forEach((item, index) => {
         console.log('counter ++');
+        const priorityBtnList = createElement('button', 'btnDivToDoListProject', item.id + 'priorityBtnProjectEdit', '-');
         const closeBtnList = createElement('button', 'btnDivToDoListProject', item.id + 'closeBtnProjectEdit', 'X');
         const expandBtn = createElement('button', 'btnDivToDoListProject', item.id + 'expandBtnProjectEdit', '+');
         const buttonDiv = createElement('div', 'projectToDoBtnDiv', '', '');
         const newListElement = createElement('div', 'toDoListProjectElement', item.id+'toDoListProject', '');
         newListElement.innerHTML += (index + 1) + ' - ' + item.name;
+        setPriorityColour(priorityBtnList, item);
         addEventListenerToDoListProject(closeBtnList, expandBtn, projectId, item.id, toDoApp);
+        buttonDiv.appendChild(priorityBtnList);
         buttonDiv.appendChild(closeBtnList);
         buttonDiv.appendChild(expandBtn);
         newListElement.appendChild(buttonDiv);
@@ -147,6 +150,15 @@ function fillOrderedListWithToDoObjects(listContainer, listElement, toDoApp, pro
         // reloadLocalStorage();
     });
     listContainer.appendChild(listElement);
+}
+
+function setPriorityColour(priorityDisplay, item) {
+    if(item.priority === 'high')
+        priorityDisplay.style.background = 'red';
+    else if(item.priority === 'medium')
+        priorityDisplay.style.background = 'orange';
+    else
+        priorityDisplay.style.background = 'green';
 }
 
 function addEventListenerToDoListProject(closeBtnList, expandBtn, projectId, itemId, toDoApp){
@@ -225,26 +237,6 @@ function addEditWindowToToDoListProjectCard(currentProject, listElement, itemId,
     toDoExpansionWindow.appendChild(saveButton);
     listElement.appendChild(toDoExpansionWindow);
 }
-
-// function  reloadToDoListElementsProjectCard(projectCardElement, projectId, toDoApp){
-//     const toDoListElement = createElement('div', 'hide', projectId + 'projectToDoList', '');
-//     const toDoListTitleElement = createElement('div', 'toDoListProjectTitleDiv', '', 'Current To Dos');
-//     const toDoListContainer = createElement('div', 'toDoListProjectContainer', '', '');
-//     const listElement = createElement('div', 'projectOrderedListDiv', 'orderedList' + projectId, '');
-//     const closeButton = createElement('button', 'closeButtonProjectToDoList', '', 'X');
-//     showToDoButton.addEventListener("click", () => {
-//         fillOrderedListWithToDoObjects(toDoListContainer, listElement, toDoApp, projectId);
-//         displayOrHideProjectToDoList('display', projectId, toDoApp);
-//     });
-//
-//     closeButton.addEventListener("click", () => {
-//         displayOrHideProjectToDoList('hide', projectId, toDoApp);
-//     });
-//     toDoListElement.appendChild(toDoListTitleElement);
-//     toDoListElement.appendChild(toDoListContainer);
-//     toDoListTitleElement.appendChild(closeButton);
-//     projectCardElement.appendChild(toDoListElement);
-// }
 
 function displayEditWindowToDo(itemId, toDoApp){
     const windowToBeDisplayed = document.getElementById(itemId + 'expansionDiv');

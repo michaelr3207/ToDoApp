@@ -4,12 +4,13 @@
 class ToDoTask{
 
     static number = 1;
-    constructor(toDoName, description, toDoDate) {
+    constructor(toDoName, description, toDoDate, priority) {
         this.id = ToDoTask.number ++;
         this.name = toDoName;
         this.description = description;
         this.completed = false;
         this.dueDate = toDoDate;
+        this.priority = priority;
     }
 
     getId(){
